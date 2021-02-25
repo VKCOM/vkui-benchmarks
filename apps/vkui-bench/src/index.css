@@ -1,0 +1,7 @@
+.SideCol__selected {
+    background: var(--background_highlighted);
+}
+
+.Card__in {
+    z-index: unset;
+}
