@@ -39,7 +39,7 @@ jobs:
       - name: Lighthouse CI Action
         uses: treosh/lighthouse-ci-action@v7
         with:
-          urls:
+          urls: |
             https://vkui-benchmark.surge.sh
             https://mui-benchmark.surge.sh
             https://yandex-benchmark.surge.sh
