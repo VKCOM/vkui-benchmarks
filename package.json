@@ -4,6 +4,14 @@
   "workspaces": [
     "apps/*"
   ],
+  "scripts": {
+    "build:vkui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/vkui-benchmark build",
+    "build:mui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/mui-benchmark build",
+    "build:yandex": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/yandex-benchmark build",
+    "start:vkui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/vkui-benchmark start",
+    "start:mui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/mui-benchmark start",
+    "start:yandex": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/yandex-benchmark start"
+  },
   "devDependencies": {
     "lerna": "^3.22.1"
   }
