@@ -11,7 +11,7 @@ jobs:
     
     strategy:
       matrix:
-        app: ["vkui", "mui", "yandex"]
+        app: ["vkui"] #, "mui", "yandex"]
 
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +23,12 @@ jobs:
       - run: yarn
       - run: npx lerna bootstrap --scope @vkui-benchmarks/${{ matrix.app }}-benchmark
       - run: yarn build:${{ matrix.app }}
-      - run: npx surge ./apps/${{ matrix.app }}-benchmark/build ${{ matrix.app }}-benchmark.surge.sh
+      - name: deploy to surge
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: npx surge ./apps/${{ matrix.app }}-benchmark/build ${{ matrix.app }}-benchmark.surge.sh
+        
 
   # benchmark:
   #   runs-on: ubuntu-latest
