@@ -6,7 +6,7 @@ name: Run Benchmarks
 on: workflow_dispatch
 
 jobs:
-  setup:
+  benchmark:
     runs-on: ubuntu-latest
     
     strategy:
@@ -21,7 +21,7 @@ jobs:
           node-version: "14"
 
       - run: yarn
-      - run: npx lerna bootstrap --scope @vkui-benchmarks/{{ matrix.app }}
-      - run: yarn build:{{ matrix.app }}
+      - run: npx lerna bootstrap --scope @vkui-benchmarks/${{ matrix.app }}
+      - run: yarn build:${{ matrix.app }}
 
 
