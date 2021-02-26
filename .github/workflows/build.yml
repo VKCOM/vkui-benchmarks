@@ -1,4 +1,4 @@
-name: Run Benchmarks
+name: Build adn Deploy
 
 on: workflow_dispatch
 
