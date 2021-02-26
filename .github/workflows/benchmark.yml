@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Lighthouse CI Action
         uses: treosh/lighthouse-ci-action@v7
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ matrix.app }}-$GITHUB_RUN_ID
         with:
           temporaryPublicStorage: true
           urls: |
