@@ -10,8 +10,6 @@ jobs:
       matrix:
         app: ["vkui", "mui", "yandex"]
 
-    needs: build
-
     steps:
       - name: Lighthouse CI Action
         uses: treosh/lighthouse-ci-action@v7
