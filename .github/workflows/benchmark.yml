@@ -1,0 +1,23 @@
+name: Run Benchmarks
+
+on: workflow_dispatch
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        app: ["vkui", "mui", "yandex"]
+
+    needs: build
+
+    steps:
+      - name: Lighthouse CI Action
+        uses: treosh/lighthouse-ci-action@v7
+        with:
+          temporaryPublicStorage: true
+          urls: |
+            https://${{ matrix.app }}-benchmark.surge.sh
+            https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
+            https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
