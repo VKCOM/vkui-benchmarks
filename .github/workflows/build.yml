@@ -1,4 +1,4 @@
-name: Build adn Deploy
+name: Build and Deploy
 
 on: workflow_dispatch
 
