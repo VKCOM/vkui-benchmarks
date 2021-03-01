@@ -12,7 +12,7 @@ jobs:
         id: create-issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ID: env.GITHUB_RUN_ID
+          ID: ${{ env.GITHUB_RUN_ID }}
       - run: echo "issue ${{ steps.create-issue.outputs.number }}"
     outputs:
       issue: ${{ steps.create-issue.outputs.number }}
