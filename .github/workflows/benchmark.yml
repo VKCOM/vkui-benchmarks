@@ -27,6 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Lighthouse CI Action
+        id: benchmark
         uses: treosh/lighthouse-ci-action@v7
         env:
           LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ matrix.app }}-$GITHUB_RUN_ID
@@ -38,4 +39,13 @@ jobs:
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
             https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
       - run: echo ${{ needs.report.outputs.issue }}
+      - uses: jungwinter/comment@v1
+        with:
+          type: create
+          body: "
+          # ${{matrix.app}}-benchmark app Lighthouse report
+          ${{ steps.benchmark.outputs.links }}
+          "
+          issue_number: ${{ needs.report.outputs.issue }}
+          token: ${{ secrets.GITHUB_TOKEN }}
         
