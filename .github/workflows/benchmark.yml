@@ -13,6 +13,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ID: ${{ env.GITHUB_RUN_ID }}
+          RUN_LINK: "https://github.com/ewgenius/vkui-benchmarks/runs/${{ env.GITHUB_RUN_ID }}"
     outputs:
       issue: ${{ steps.create-issue.outputs.number }}
 
@@ -39,6 +40,11 @@ jobs:
             https://${{ matrix.app }}-benchmark.surge.sh
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
             https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
+      - name: parse links
+        id: parse-links
+        run: |
+          parsed=$(jq -n "${{ steps.benchmark.outputs.links }}" | jq -r '. | to_entries | .[].value')
+          echo "::set-output name=links::$parsed"
       - name: add results to report
         uses: jungwinter/comment@v1
         with:
@@ -46,9 +52,7 @@ jobs:
           body: "
           ## ${{matrix.app}}-benchmark:
 
-          ```json
-          ${{ steps.benchmark.outputs.links }}
-          ```
+          ${{ steps.parse-links.outputs.links }}
           "
           issue_number: ${{ needs.prepare-report.outputs.issue }}
           token: ${{ secrets.GITHUB_TOKEN }}
