@@ -41,7 +41,9 @@ const AppDefault = () => {
                 {id: 'home', label: 'Home'},
                 {id: 'settings', label: 'Settings'},
                 {id: 'support', label: 'Support'},
-            ]} openProfileModal={()=>{toggleProfileModal()}}/>
+            ]} openProfileModal={() => {
+                toggleProfileModal()
+            }}/>
             <Modal
                 theme="normal"
                 onClose={() => toggleProfileModal()}
@@ -49,14 +51,16 @@ const AppDefault = () => {
                 zIndexGroupLevel={20}
             >
                 <ProfileEditContent
-                    onEnter={()=>{
+                    onEnter={() => {
                         setShowSpinner(true);
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             toggleProfileModal();
                             setShowSpinner(false);
                         }, 1000)
                     }}
-                    onCancel={()=>{toggleProfileModal()}}
+                    onCancel={() => {
+                        toggleProfileModal()
+                    }}
                 />
             </Modal>
             <Spin size="m" view="default" progress={showSpinner} position="center"/>

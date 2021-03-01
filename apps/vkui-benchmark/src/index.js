@@ -1,6 +1,6 @@
 import {createContext, StrictMode} from "react";
 import ReactDOM from 'react-dom';
-import {AppAdaptive} from './AppAdaptive';
+import {AppDefault} from './AppDefault';
 import {AdaptivityProvider, AppRoot, ConfigProvider} from "@vkontakte/vkui";
 import bridge from "@vkontakte/vk-bridge-mock";
 import {AppBurn} from "./AppBurn";
@@ -9,7 +9,7 @@ import {AppModals} from "./AppModals";
 export const UserContext = createContext();
 const urlParams = new URLSearchParams(window.location.search);
 
-const renderAdaptive = () => {
+const renderDefault = () => {
     bridge.send('VKWebAppInit').then(_ => {
         bridge.send('VKWebAppGetUserInfo').then(r => {
             ReactDOM.render(
@@ -18,7 +18,7 @@ const renderAdaptive = () => {
                         <AdaptivityProvider>
                             <AppRoot>
                                 <UserContext.Provider value={r}>
-                                    <AppAdaptive/>
+                                    <AppDefault/>
                                 </UserContext.Provider>
                             </AppRoot>
                         </AdaptivityProvider>
@@ -69,8 +69,8 @@ if (urlParams.has('mode')) {
             renderModals();
             break;
         default:
-            renderAdaptive();
+            renderDefault();
     }
 } else {
-    renderAdaptive();
+    renderDefault();
 }

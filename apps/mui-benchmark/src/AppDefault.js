@@ -25,7 +25,7 @@ import {UserContext} from "./index";
 
 const drawerWidth = 280;
 
-export const AppAdaptive = () => {
+export const AppDefault = () => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('md'));
     const useStyles = makeStyles((theme) => ({

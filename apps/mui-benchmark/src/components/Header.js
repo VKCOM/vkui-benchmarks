@@ -41,7 +41,7 @@ export const Header = ({open, toggleOpen, classes, children, drawerHidden}) => {
                     {children}
                 </Typography>
                 <IconButton style={{marginLeft: 'auto', color: 'black'}} onClick={() => {
-                    window.open('/?mode=adaptive', '_self')
+                    window.open('/?mode=default', '_self')
                 }}>
                     <DashboardOutlined/>
                 </IconButton>

@@ -1,6 +1,6 @@
 {
-  "name": "@vkui-benchmarks/mui-benchmark",
-  "version": "0.0.1",
+  "name": "mui-bench",
+  "version": "0.1.0",
   "private": true,
   "homepage": "./",
   "dependencies": {

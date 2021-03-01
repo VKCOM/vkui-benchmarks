@@ -1,6 +1,6 @@
 {
-  "name": "@vkui-benchmarks/yandex-benchmark",
-  "version": "0.0.1",
+  "name": "yandex-bench",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@bem-react/classname": "^1.5.9",

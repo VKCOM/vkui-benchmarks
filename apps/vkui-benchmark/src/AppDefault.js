@@ -36,7 +36,7 @@ import {Settings} from "./panels/Settings";
 import {Support} from "./panels/Support";
 import {UserContext} from "./index";
 
-export const AppAdaptive = withAdaptivity((props) => {
+export const AppDefault = withAdaptivity((props) => {
     const {viewWidth} = props;
     const [activeStory, setActiveStory] = useState('home');
     const [activeModal, setActiveModal] = useState('edit');

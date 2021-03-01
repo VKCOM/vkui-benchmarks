@@ -4,9 +4,9 @@ export const SideButtons = () => {
     return (
         <div style={{display: 'flex', gap: 8}}>
             <PanelHeaderButton onClick={()=>{
-                window.open('/?mode=adaptive', '_self')
+                window.open('/?mode=default', '_self')
             }}>
-                Adaptive
+                Default
             </PanelHeaderButton>
             <PanelHeaderButton onClick={()=>{
                 window.open('/?mode=burn', '_self')

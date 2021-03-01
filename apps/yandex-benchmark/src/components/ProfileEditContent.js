@@ -4,7 +4,11 @@ import {Textinput as TextInputDesktop, withPinRoundRound, withSizeM} from "@yand
 import {withSizeM as withSizeMButton, withViewAction, withViewDefault} from "@yandex/ui/Button/desktop";
 import {UserContext} from "../index";
 import {Spacer} from "@yandex/ui/Spacer";
-import {Textarea as TextareaDesktop, withViewDefault as withViewDefaultTextarea, withSizeM as withSizeMTextArea} from "@yandex/ui/Textarea/desktop";
+import {
+    Textarea as TextareaDesktop,
+    withSizeM as withSizeMTextArea,
+    withViewDefault as withViewDefaultTextarea
+} from "@yandex/ui/Textarea/desktop";
 import {Button as ButtonDesktop} from "@yandex/ui/Button/Button";
 import {withGapM} from "@yandex/ui/ButtonGroup/desktop";
 import {ButtonGroup as ButtonGroupDesktop} from "@yandex/ui/ButtonGroup/ButtonGroup";

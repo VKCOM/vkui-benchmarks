@@ -60,9 +60,9 @@ export const AppModals = (props) => {
                     />
                 </FormItem>
                 <FormItem top="Gender">
-                    <Radio name="sex" value={0} defaultChecked>Любой</Radio>
-                    <Radio name="sex" value={1}>Мужской</Radio>
-                    <Radio name="sex" value={2}>Женский</Radio>
+                    <Radio name="sex" value={0} defaultChecked>Other</Radio>
+                    <Radio name="sex" value={1}>Male</Radio>
+                    <Radio name="sex" value={2}>Female</Radio>
                 </FormItem>
             </Group>
         </ModalPage>

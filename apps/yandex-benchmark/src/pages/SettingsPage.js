@@ -9,9 +9,13 @@ export const SettingsPage = (props) => {
     return (
         <div id={id} className="Page">
             {!confirmed && <ConfirmEmail
-                onEnter={()=>{setConfirmed(true)}}
+                onEnter={() => {
+                    setConfirmed(true)
+                }}
             />}
-            <ProfileEditBlock onClick={()=>{toggleProfileModal()}}/>
+            <ProfileEditBlock onClick={() => {
+                toggleProfileModal()
+            }}/>
         </div>
     )
 }

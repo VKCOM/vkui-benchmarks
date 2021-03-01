@@ -1,8 +1,9 @@
-import {StrictMode} from 'react';
+import {createContext, StrictMode} from 'react';
 import ReactDOM from 'react-dom';
 import AppDefault from './AppDefault';
-import {createContext} from "react";
 import bridge from "@vkontakte/vk-bridge-mock";
+import {AppBurn} from "./AppBurn";
+import {AppModals} from "./AppModals";
 
 export const UserContext = createContext();
 const urlParams = new URLSearchParams(window.location.search);
@@ -22,7 +23,7 @@ const renderAdaptive = () => {
     })
 }
 
-/*
+
 const renderBurn = () => {
     ReactDOM.render(
         <StrictMode>
@@ -39,15 +40,15 @@ const renderModals = () => {
         </StrictMode>,
         document.getElementById('root')
     );
-}*/
+}
 
 if (urlParams.has('mode')) {
     switch (urlParams.get('mode')) {
         case 'burn':
-            //renderBurn();
+            renderBurn();
             break;
         case 'modals':
-            //renderModals();
+            renderModals();
             break;
         default:
             renderAdaptive();
