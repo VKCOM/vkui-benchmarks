@@ -13,7 +13,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ID: ${{ env.GITHUB_RUN_ID }}
-      - run: echo "issue ${{ steps.create-issue.outputs.number }}"
     outputs:
       issue: ${{ steps.create-issue.outputs.number }}
 
@@ -40,19 +39,16 @@ jobs:
             https://${{ matrix.app }}-benchmark.surge.sh
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
             https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
-      - run: echo "issue ${{ needs.prepare-report.outputs.issue }}"
-      - id: parse-json
-        run: |
-          links=jq -n "${{ steps.benchmark.outputs.links }}" | jq '. | to_entries | .[].value'
-          echo "::set-output name=links::$links"
       - name: add results to report
         uses: jungwinter/comment@v1
         with:
           type: create
           body: "
-          # ${{matrix.app}}-benchmark:
+          ## ${{matrix.app}}-benchmark:
 
-          ${{ steps.parse-json.outputs.links }}
+          ```json
+          ${{ steps.benchmark.outputs.links }}
+          ```
           "
           issue_number: ${{ needs.prepare-report.outputs.issue }}
           token: ${{ secrets.GITHUB_TOKEN }}
