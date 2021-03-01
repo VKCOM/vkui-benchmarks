@@ -56,7 +56,7 @@ jobs:
         with:
           type: create
           body: "
-          ## ${{matrix.app}}-benchmark:
+          # ${{matrix.app}}-benchmark:
 
           ${{ steps.format-results.outputs.results }}
           "

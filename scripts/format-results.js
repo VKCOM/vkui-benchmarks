@@ -5,11 +5,9 @@ const links = JSON.parse(process.argv[3]);
 
 manifests.forEach((manifest) => {
   console.log(`
-### ${manifest.url}
-#### full report:
-${links[manifest.url]}
-
-#### summary:
+## ${manifest.url}
+full report: ${links[manifest.url]}
+summary:
 
 | performance | accessibility | best-practices | seo | pwa |
 |-|-|-|-|-|
