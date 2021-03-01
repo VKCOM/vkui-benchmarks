@@ -1,4 +1,4 @@
 ---
-title: Benchmark report
+title: Benchmark report {{ env.ID }}
 labels: report
 ---

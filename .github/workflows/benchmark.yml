@@ -11,6 +11,9 @@ jobs:
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ID: $GITHUB_RUN_ID
+    outputs:
+      issue: ${{ steps.create-issue.outputs.number }}
 
   benchmark:
     runs-on: ubuntu-latest
@@ -34,4 +37,5 @@ jobs:
             https://${{ matrix.app }}-benchmark.surge.sh
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
             https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
+      - run: echo ${{ needs.report.outputs.issue }}
         
