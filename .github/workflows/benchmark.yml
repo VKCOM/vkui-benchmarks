@@ -48,6 +48,7 @@ jobs:
           parsed="${parsed//$'\n'/'%0A'}"
           parsed="${parsed//$'\r'/'%0D'}"
           echo "::set-output name=links::$parsed"
+      - run: echo ${{ steps.benchmark.outputs.manifest }}
       - name: add results to report
         uses: jungwinter/comment@v1
         with:
