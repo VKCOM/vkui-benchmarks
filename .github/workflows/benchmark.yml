@@ -3,22 +3,24 @@ name: Run Benchmarks
 on: workflow_dispatch
 
 jobs:
-  report:
+  prepare-report:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       - uses: JasonEtco/create-an-issue@v2
+        id: create-issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ID: "$GITHUB_RUN_ID"
+      - run: echo "issue ${{ steps.create-issue.outputs.number }}"
     outputs:
       issue: ${{ steps.create-issue.outputs.number }}
 
   benchmark:
     runs-on: ubuntu-latest
 
-    needs: report
+    needs: prepare-report
 
     strategy:
       matrix:
@@ -38,7 +40,7 @@ jobs:
             https://${{ matrix.app }}-benchmark.surge.sh
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
             https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
-      - run: echo "issue ${{ needs.report.outputs.issue }}"
+      - run: echo "issue ${{ needs.prepare-report.outputs.issue }}"
       - name: add results to report
         uses: jungwinter/comment@v1
         with:
@@ -47,6 +49,6 @@ jobs:
           # ${{matrix.app}}-benchmark app Lighthouse report
           ${{ steps.benchmark.outputs.links }}
           "
-          issue_number: ${{ needs.report.outputs.issue }}
+          issue_number: ${{ needs.prepare-report.outputs.issue }}
           token: ${{ secrets.GITHUB_TOKEN }}
         
