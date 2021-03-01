@@ -43,8 +43,8 @@ jobs:
       - name: format results
         id: format-results
         run: |
-          manifest=${{ steps.benchmark.outputs.manifest }}
-          links=${{ steps.benchmark.outputs.links }}
+          manifest='${{ steps.benchmark.outputs.manifest }}'
+          links='${{ steps.benchmark.outputs.links }}'
           formatted="$(./scripts/format-results.js $manifest $links)"
           formatted="${formatted//'%'/'%25'}"
           formatted="${formatted//$'\n'/'%0A'}"
