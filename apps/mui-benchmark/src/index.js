@@ -1,7 +1,7 @@
 import React, {createContext} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {AppAdaptive} from './AppAdaptive';
+import {AppDefault} from './AppDefault';
 import bridge from '@vkontakte/vk-bridge-mock';
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 import {deepPurple, purple} from "@material-ui/core/colors";
@@ -24,14 +24,14 @@ const theme = createMuiTheme({
 
 const urlParams = new URLSearchParams(window.location.search);
 
-const renderAdaptive = () => {
+const renderDefault = () => {
     bridge.send('VKWebAppInit').then(_ => {
         bridge.send('VKWebAppGetUserInfo').then(r => {
             ReactDOM.render(
                 <React.StrictMode>
                     <MuiThemeProvider theme={theme}>
                         <UserContext.Provider value={r}>
-                            <AppAdaptive/>
+                            <AppDefault/>
                         </UserContext.Provider>
                     </MuiThemeProvider>
                 </React.StrictMode>,
@@ -72,8 +72,8 @@ if (urlParams.has('mode')) {
             renderModals();
             break;
         default:
-            renderAdaptive();
+            renderDefault();
     }
 } else {
-    renderAdaptive();
+    renderDefault();
 }
