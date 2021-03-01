@@ -12,8 +12,8 @@ jobs:
         id: create-issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ID: ${{ env.GITHUB_RUN_ID }}
-          RUN_LINK: "https://github.com/ewgenius/vkui-benchmarks/runs/${{ env.GITHUB_RUN_ID }}"
+          ID: ${{ github.run_id }}
+          RUN_LINK: "https://github.com/ewgenius/vkui-benchmarks/runs/${{ github.run_id }}"
     outputs:
       issue: ${{ steps.create-issue.outputs.number }}
 
@@ -43,7 +43,7 @@ jobs:
       - name: parse links
         id: parse-links
         run: |
-          parsed=$(jq -n "${{ steps.benchmark.outputs.links }}" | jq -r '. | to_entries | .[].value')
+          parsed=$(jq -n '${{ steps.benchmark.outputs.links }}' | jq -r '. | to_entries | .[].value')
           echo "::set-output name=links::$parsed"
       - name: add results to report
         uses: jungwinter/comment@v1
