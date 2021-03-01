@@ -1,6 +1,6 @@
 name: Run Benchmarks
 
-on: push
+on: workflow_dispatch
 
 jobs:
   prepare-report:
