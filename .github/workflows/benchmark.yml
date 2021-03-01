@@ -43,6 +43,9 @@ jobs:
       - name: parse links
         id: parse-links
         run: |
+          echo '${{ steps.benchmark.outputs.links }}'
+          echo $(jq -n '${{ steps.benchmark.outputs.links }}')
+          echo $(jq -n '${{ steps.benchmark.outputs.links }}' | jq -r '. | to_entries | .[].value')
           parsed=$(jq -n '${{ steps.benchmark.outputs.links }}' | jq -r '. | to_entries | .[].value')
           echo "::set-output name=links::$parsed"
       - name: add results to report
