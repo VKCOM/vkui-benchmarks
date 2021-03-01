@@ -17,6 +17,7 @@ jobs:
           LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ matrix.app }}-$GITHUB_RUN_ID
         with:
           temporaryPublicStorage: true
+          configPath: ./lighthouserc.js
           urls: |
             https://${{ matrix.app }}-benchmark.surge.sh
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
