@@ -40,14 +40,16 @@ jobs:
             https://${{ matrix.app }}-benchmark.surge.sh
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
             https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
-      - name: parse links
-        id: parse-links
+      - name: format results
+        id: format-results
         run: |
-          parsed=$(jq -n '${{ steps.benchmark.outputs.links }}' | jq -r '. | to_entries | .[].value')
-          parsed="${parsed//'%'/'%25'}"
-          parsed="${parsed//$'\n'/'%0A'}"
-          parsed="${parsed//$'\r'/'%0D'}"
-          echo "::set-output name=links::$parsed"
+          manifest=${{ steps.benchmark.outputs.manifest }}
+          links=${{ steps.benchmark.outputs.links }}
+          formatted="$(./scripts/format-results.js $manifest $links)"
+          formatted="${formatted//'%'/'%25'}"
+          formatted="${formatted//$'\n'/'%0A'}"
+          formatted="${formatted//$'\r'/'%0D'}"
+          echo "::set-output name=results::$formatted"
       - run: echo ${{ steps.benchmark.outputs.manifest }}
       - name: add results to report
         uses: jungwinter/comment@v1
@@ -56,7 +58,7 @@ jobs:
           body: "
           ## ${{matrix.app}}-benchmark:
 
-          ${{ steps.parse-links.outputs.links }}
+          ${{ steps.format-results.outputs.results }}
           "
           issue_number: ${{ needs.prepare-report.outputs.issue }}
           token: ${{ secrets.GITHUB_TOKEN }}
