@@ -43,10 +43,10 @@ jobs:
       - name: parse links
         id: parse-links
         run: |
-          echo '${{ steps.benchmark.outputs.links }}'
-          echo $(jq -n '${{ steps.benchmark.outputs.links }}')
-          echo $(jq -n '${{ steps.benchmark.outputs.links }}' | jq -r '. | to_entries | .[].value')
           parsed=$(jq -n '${{ steps.benchmark.outputs.links }}' | jq -r '. | to_entries | .[].value')
+          parsed="${parsed//'%'/'%25'}"
+          parsed="${parsed//$'\n'/'%0A'}"
+          parsed="${parsed//$'\r'/'%0D'}"
           echo "::set-output name=links::$parsed"
       - name: add results to report
         uses: jungwinter/comment@v1
