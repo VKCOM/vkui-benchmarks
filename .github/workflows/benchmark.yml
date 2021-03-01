@@ -11,7 +11,7 @@ jobs:
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ID: $GITHUB_RUN_ID
+          ID: "$GITHUB_RUN_ID"
     outputs:
       issue: ${{ steps.create-issue.outputs.number }}
 
@@ -38,8 +38,9 @@ jobs:
             https://${{ matrix.app }}-benchmark.surge.sh
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
             https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
-      - run: echo ${{ needs.report.outputs.issue }}
-      - uses: jungwinter/comment@v1
+      - run: echo "issue ${{ needs.report.outputs.issue }}"
+      - name: add results to report
+        uses: jungwinter/comment@v1
         with:
           type: create
           body: "
