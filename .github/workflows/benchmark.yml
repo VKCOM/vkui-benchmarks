@@ -50,9 +50,9 @@ jobs:
         with:
           type: create
           body: "
-          # ${{matrix.app}}-benchmark app Lighthouse report
+          # ${{matrix.app}}-benchmark:
 
-          ${{ steps.benchmark.outputs.links }}
+          ${{ steps.parse-json.outputs.links }}
           "
           issue_number: ${{ needs.prepare-report.outputs.issue }}
           token: ${{ secrets.GITHUB_TOKEN }}
