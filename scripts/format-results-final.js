@@ -5,7 +5,7 @@ const path = require("path");
 
 const vkuiReport = require(path.resolve(
   __dirname,
-  "../results/vkui/vkui.json"
+  "../results/results-vkui/vkui.json"
 ));
 
 function reportTable(app, run) {
