@@ -75,11 +75,11 @@ jobs:
       - name: combine results
         id: combine-results
         run: |
-          header="| app | url | report | performance | accessibility | best-practices | seo | pwa |\n|-|-|-|-|-|-|-|-|"
+          header="| app | url | report | performance | accessibility | best-practices | seo | pwa |%0A|-|-|-|-|-|-|-|-|"
           formatted="${header}"
           for dir in ./results/*; do
             for result in $dir/*; do
-              formatted="${formatted}\n$(cat $result)"
+              formatted="${formatted}%0A$(cat $result)"
             done
           done
           formatted="${formatted//'%'/'%25'}"
