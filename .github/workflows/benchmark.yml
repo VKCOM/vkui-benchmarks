@@ -92,15 +92,15 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           path: ./results
-      - run: ls -la ./results/results-mui
       - name: combine results
         id: combine-results
         run: |
           header="| app | url | report | performance | accessibility | best-practices | seo | pwa |\n|-|-|-|-|-|-|-|-|"
           formatted="${header}"
-          for result in ./results/*
-          do
-            formatted="${formatted}\n$(cat $result)"
+          for dir in ./results/*; do
+            for result in $dir/*; do
+              formatted="${formatted}\n$(cat $result)"
+            done
           done
           formatted="${formatted//'%'/'%25'}"
           formatted="${formatted//$'\n'/'%0A'}"
