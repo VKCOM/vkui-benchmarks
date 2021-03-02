@@ -92,7 +92,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           path: ./results
-      - run: ls -la ./results
+      - run: ls -la ./results/results-mui
       - name: combine results
         id: combine-results
         run: |
