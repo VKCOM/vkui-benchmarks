@@ -80,7 +80,9 @@ jobs:
           formatted="${header}\n${separator}"
           for dir in ./results/*; do
             for result in $dir/*; do
-              unescaped="${$(cat $result)//$'%0A'/\n}"
+              # some bash/zsh workarounds for gh actions
+              content="$(cat $result)"
+              unescaped="${${content}//$'%0A'/\n}"
               formatted="${formatted}\n${unescaped}"
             done
           done
