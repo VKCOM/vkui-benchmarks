@@ -63,7 +63,9 @@ jobs:
   finalize-report:
     runs-on: ubuntu-latest
 
-    needs: benchmark
+    needs:
+      - prepare-report
+      - benchmark
 
     steps:
       - uses: actions/checkout@v2
