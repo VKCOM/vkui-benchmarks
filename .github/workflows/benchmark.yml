@@ -83,6 +83,9 @@ jobs:
               formatted="${formatted}\n$(cat $result)"
             done
           done
+          formatted="${formatted//'%'/'%25'}"
+          formatted="${formatted//$'\n'/'%0A'}"
+          formatted="${formatted//$'\r'/'%0D'}"
           echo $formatted > ./combined_result
           echo "::set-output name=results::$(cat ./combined_result)"
       - run: echo "${{ steps.combine-results.outputs.results }}"
