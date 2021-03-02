@@ -41,26 +41,43 @@ jobs:
             https://${{ matrix.app }}-benchmark.surge.sh
             https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
             https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
-      - name: format results
-        id: format-results
+      - name: save results
+        id: save-results
         run: |
           manifest='${{ steps.benchmark.outputs.manifest }}'
           links='${{ steps.benchmark.outputs.links }}'
-          formatted="$(./scripts/format-results.js $manifest $links)"
+          mkdir -p ./results
+          ./scripts/format-results-partial.js ${{ matrix.app }} $manifest $links > ./results/${{ matrix.app }}.json
+      - name: upload results to artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: results-${{ matrix.app }}
+          path: ./results/${{ matrix.app }}.json
+
+  finalize-report:
+    runs-on: ubuntu-latest
+
+    needs:
+      - prepare-report
+      - benchmark
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          path: ./results
+      - name: combine results
+        id: combine-results
+        run: |
+          formatted="$(./scripts/format-results-final.js)"
           formatted="${formatted//'%'/'%25'}"
           formatted="${formatted//$'\n'/'%0A'}"
           formatted="${formatted//$'\r'/'%0D'}"
           echo "::set-output name=results::$formatted"
-      - run: echo ${{ steps.benchmark.outputs.manifest }}
       - name: add results to report
         uses: jungwinter/comment@v1
         with:
           type: create
-          body: "
-          # ${{matrix.app}}-benchmark:
-
-          ${{ steps.format-results.outputs.results }}
-          "
+          body: "${{ steps.combine-results.outputs.results }}"
           issue_number: ${{ needs.prepare-report.outputs.issue }}
           token: ${{ secrets.GITHUB_TOKEN }}
-        
