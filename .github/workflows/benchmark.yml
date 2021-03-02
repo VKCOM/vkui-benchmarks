@@ -80,10 +80,9 @@ jobs:
           formatted="${header}\n${separator}"
           for dir in ./results/*; do
             for result in $dir/*; do
-              formatted="${formatted}\n$(cat $result)"
+              formatted="${formatted}\n${$(cat $result)//'%0A'/\n}"
             done
           done
-          formatted="${formatted//'%'/'%25'}"
           formatted="${formatted//$'\n'/'%0A'}"
           formatted="${formatted//$'\r'/'%0D'}"
           echo $formatted > ./combined_result
