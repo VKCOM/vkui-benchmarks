@@ -92,5 +92,18 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           path: ./results
-      - run: lr -R
+      - run: ls -la ./results
+      - name: combine results
+        id: combine-results
+        run: |
+          header="| app | url | report | performance | accessibility | best-practices | seo | pwa |\n|-|-|-|-|-|-|-|-|"
+          results-vkui="$(cat ./results/results-vkui/results-vkui.txt)"
+          results-mui="$(cat ./results/results-mui/results-mui.txt)"
+          results-yandex="$(cat ./results/results-yandex/results-yandex.txt)"
+          formatted="${header}\n${results-vkui}\n${results-mui}\n${results-yandex}"
+          formatted="${formatted//'%'/'%25'}"
+          formatted="${formatted//$'\n'/'%0A'}"
+          formatted="${formatted//$'\r'/'%0D'}"
+          echo "::set-output name=results::$formatted"
+      - run: echo ${{ steps.combine-results.outputs.results }}
 
