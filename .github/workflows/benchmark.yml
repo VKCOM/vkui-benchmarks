@@ -48,6 +48,7 @@ jobs:
         run: |
           manifest='${{ steps.benchmark.outputs.manifest }}'
           links='${{ steps.benchmark.outputs.links }}'
+          mkdir -p ./results
           ./scripts/format-results-partial.js ${{ matrix.app }} $manifest $links > ./results/${{ matrix.app }}.json
       - name: upload results to artifact
         uses: actions/upload-artifact@v2
