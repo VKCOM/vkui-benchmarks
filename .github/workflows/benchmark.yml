@@ -80,7 +80,8 @@ jobs:
           formatted="${header}\n${separator}"
           for dir in ./results/*; do
             for result in $dir/*; do
-              formatted="${formatted}\n${$(cat $result)//$'%0A'/\n}"
+              unescaped="${$(cat $result)//$'%0A'/\n}"
+              formatted="${formatted}\n${unescaped}"
             done
           done
           formatted="${formatted//$'\n'/'%0A'}"
