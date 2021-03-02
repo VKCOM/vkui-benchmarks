@@ -1,8 +1,6 @@
 name: Run Benchmarks
 
-# on: workflow_dispatch
-
-on: push
+on: workflow_dispatch
 
 jobs:
   prepare-report:
@@ -76,7 +74,6 @@ jobs:
           formatted="${formatted//$'\n'/'%0A'}"
           formatted="${formatted//$'\r'/'%0D'}"
           echo "::set-output name=results::$formatted"
-      - run: echo "${{ steps.combine-results.outputs.results }}"
       - name: add results to report
         uses: jungwinter/comment@v1
         with:
