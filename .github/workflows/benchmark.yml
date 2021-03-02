@@ -82,7 +82,7 @@ jobs:
             for result in $dir/*; do
               # some bash/zsh workarounds for gh actions
               content="$(cat $result)"
-              unescaped="${${content}//$'%0A'/\n}"
+              unescaped="${${content}//%0A/\n}"
               formatted="${formatted}\n${unescaped}"
             done
           done
