@@ -58,17 +58,17 @@ jobs:
         run: |
           manifest='${{ steps.benchmark.outputs.manifest }}'
           links='${{ steps.benchmark.outputs.links }}'
-          formatted="$(./scripts/format-results-partial.js ${{ app }} $manifest $links)"
+          formatted="$(./scripts/format-results-partial.js ${{ matrix.app }} $manifest $links)"
           formatted="${formatted//'%'/'%25'}"
           formatted="${formatted//$'\n'/'%0A'}"
           formatted="${formatted//$'\r'/'%0D'}"
           mkdir -p ./results
-          echo $formatted > ./results/${{ app }}.txt
+          echo $formatted > ./results/${{ matrix.app }}.txt
       - name: upload results
         uses: actions/upload-artifact@v2
         with:
-          name: results-${{ app }}
-          path: ./results/${{ app }}.txt
+          name: results-${{ matrix.app }}
+          path: ./results/${{ matrix.app }}.txt
       - run: echo ${{ steps.benchmark.outputs.manifest }}
       - name: add results to report
         uses: jungwinter/comment@v1
