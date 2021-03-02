@@ -68,9 +68,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           path: ./results
-      - run: |
-          ls -la ./results/results-vkui
-          cat ./results/results-vkui
       - name: combine results
         id: combine-results
         run: |

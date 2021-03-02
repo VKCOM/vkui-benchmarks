@@ -19,12 +19,12 @@ const SEPARATOR = `
 `;
 
 fs.readdirSync(path.resolve(__dirname, "../results"))
-  .filter((file) => !file.startsWith("vkui"))
+  .filter((file) => !file.startsWith("results-vkui"))
   .forEach((file, i) => {
     const report = require(path.resolve(
       __dirname,
       "../results",
-      `${file}/${file}.json`
+      `${file}/${file.substr(8)}.json`
     ));
 
     if (i !== 0) {
