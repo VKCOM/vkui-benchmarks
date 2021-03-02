@@ -97,10 +97,11 @@ jobs:
         id: combine-results
         run: |
           header="| app | url | report | performance | accessibility | best-practices | seo | pwa |\n|-|-|-|-|-|-|-|-|"
-          results-vkui="$(cat ./results/results-vkui/results-vkui.txt)"
-          results-mui="$(cat ./results/results-mui/results-mui.txt)"
-          results-yandex="$(cat ./results/results-yandex/results-yandex.txt)"
-          formatted="${header}\n${results-vkui}\n${results-mui}\n${results-yandex}"
+          formatted="${header}"
+          for result in ./results/*
+          do
+            formatted="${formatted}\n$(cat $result)"
+          done
           formatted="${formatted//'%'/'%25'}"
           formatted="${formatted//$'\n'/'%0A'}"
           formatted="${formatted//$'\r'/'%0D'}"
