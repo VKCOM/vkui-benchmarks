@@ -85,7 +85,8 @@ jobs:
           formatted="${formatted//'%'/'%25'}"
           formatted="${formatted//$'\n'/'%0A'}"
           formatted="${formatted//$'\r'/'%0D'}"
-          echo "::set-output name=results::$formatted"
+          echo $formatted > ./combined_result
+          echo "::set-output name=results::$(cat ./combined_result)"
       - run: echo "${{ steps.combine-results.outputs.results }}"
       - name: add results to report
         uses: jungwinter/comment@v1
