@@ -4,7 +4,29 @@ const app = process.argv[2];
 const manifests = JSON.parse(process.argv[3]);
 const links = JSON.parse(process.argv[4]);
 
-manifests.forEach((manifest) => {
-  const urlTitle = manifest.url.includes("mode=modals") ? "modals" : manifest.url.includes("mode=burn") ? "list" : "default";
-  console.log(`| ${app} | [${urlTitle}](${manifest.url}) | [full report](${links[manifest.url]}) | ${manifest.summary['performance']} | ${manifest.summary['accessibility']} | ${manifest.summary['best-practices']} | ${manifest.summary['seo']} | ${manifest.summary['pwa']} |`);
-});
+const report = {
+  app,
+  runs: manifests
+    .map((manifest) => {
+      const type = manifest.url.includes("mode=modals")
+        ? "modals"
+        : manifest.url.includes("mode=burn")
+        ? "list"
+        : "default";
+      return {
+        type,
+        url: manifest.url,
+        reportUrl: links[manifest.url],
+        summary: {
+          ...manifest.summary,
+          bestPractices: manifest.summary["best-practices"]
+        },
+      };
+    })
+    .reduce((dict, run) => {
+      dict[run.type] = run;
+      return dict;
+    }, {}),
+};
+
+console.log(JSON.stringify(report, null, 2));
