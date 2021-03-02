@@ -75,8 +75,9 @@ jobs:
       - name: combine results
         id: combine-results
         run: |
-          header="| app | url | report | performance | accessibility | best-practices | seo | pwa |\n|-|-|-|-|-|-|-|-|"
-          formatted="${header}"
+          header="| app | url | report | performance | accessibility | best-practices | seo | pwa |"
+          separator="|-|-|-|-|-|-|-|-|"
+          formatted="${header}\n${separator}"
           for dir in ./results/*; do
             for result in $dir/*; do
               formatted="${formatted}\n$(cat $result)"
