@@ -18,26 +18,28 @@ jobs:
         with:
           node-version: "14"
 
+      - run: echo "${{ fromJson('[["vkui", "vkui-versioned", "mui", "yandex", "f7"], ["vkui", "mui", "yandex", "f7"]]')[github.event.inputs.version != ""] }}"
       - run: yarn
-        if: ${{ !github.event.inputs.version }}
+        if: ${{ github.event.inputs.version != "" }}
       - run: npx lerna bootstrap --scope @vkui-benchmarks/vkui-benchmark
-        if: ${{ !github.event.inputs.version }}
+        if: ${{ github.event.inputs.version != "" }}
       - name: install vkui ${{ github.event.inputs.version }}
-        if: ${{ !github.event.inputs.version }}
+        if: ${{ github.event.inputs.version != "" }}
         run: npx lerna exec --scope @vkui-benchmarks/vkui-benchmark -- yarn add 'https://github.com/VKCOM/VKUI.git\#${{ github.event.inputs.version }}'
       - run: yarn build:vkui
-        if: ${{ !github.event.inputs.version }}
+        if: ${{ github.event.inputs.version != "" }}
       - name: deploy to surge
-        if: ${{ !github.event.inputs.version }}
+        if: ${{ github.event.inputs.version != "" }}
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: npx surge ./apps/vkui-benchmark/build vkui-benchmark.surge.sh
+        run: npx surge ./apps/vkui-benchmark/build vkui-versioned-benchmark.surge.sh
+
+    outputs:
+      matrix: ${{ fromJson('[["vkui", "vkui-versioned", "mui", "yandex", "f7"], ["vkui", "mui", "yandex", "f7"]]')[github.event.inputs.version != ""] }}
 
   prepare-report:
     runs-on: ubuntu-latest
-
-    needs: build-vkui
 
     steps:
       - uses: actions/checkout@v2
@@ -54,13 +56,18 @@ jobs:
   benchmark:
     runs-on: ubuntu-latest
 
-    needs: prepare-report
+    needs:
+     - prepare-report
+     - build-vkui
 
     strategy:
+      # matrix: ${{ fromJson([]) }}
+  
       matrix:
         app: ["vkui", "mui", "yandex", "f7"]
 
     steps:
+      - run: echo 
       - uses: actions/checkout@v2
       - name: Lighthouse CI Action
         id: benchmark
