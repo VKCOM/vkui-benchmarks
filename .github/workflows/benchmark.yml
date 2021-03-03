@@ -43,7 +43,7 @@ jobs:
         id: prepare-matrix
         run: |
           matrix="$(./scripts/get-matrix.js ${{ github.event.inputs.vkui-version }})"
-          echo "::set-output name=results::$formatted"
+          echo "::set-output name=matrix::$matrix"
 
     outputs:
       matrix: ${{ steps.prepare-matrix.outputs.matrix }}
