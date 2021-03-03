@@ -3,9 +3,11 @@
 const fs = require("fs");
 const path = require("path");
 
+const vkuiVersion = process.argv[2];
+
 const vkuiReport = require(path.resolve(
   __dirname,
-  "../results/results-vkui/vkui.json"
+  vkuiVersion ? "../results/results-vkui-versioned/vkui-versioned.json" : "../results/results-vkui/vkui.json"
 ));
 
 function compare(v1, v2) {
@@ -50,7 +52,7 @@ const SEPARATOR = `
 `;
 
 fs.readdirSync(path.resolve(__dirname, "../results"))
-  .filter((file) => file !== "results-vkui")
+  .filter((file) => file !== vkuiVersion ? "results-vkui-versioned" : "results-vkui")
   .forEach((file, i) => {
     const report = require(path.resolve(
       __dirname,
@@ -62,11 +64,11 @@ fs.readdirSync(path.resolve(__dirname, "../results"))
       console.log(SEPARATOR);
     }
 
-    console.log(`## \`vkui\` vs \`${report.app}\`:`);
+    console.log(`## \`${vkuiVersion ? "vkui (" + vkuiVersion + ")" : "vkui"}\` vs \`${report.app}\`:`);
     console.log(`| app | type (app link) | report | performance | accessibility | best-practices | seo | pwa |
 |-|-|-|-|-|-|-|-|`);
 
     ["default", "modals", "list"].forEach((type) => {
-      console.log(reportCompare("vkui", vkuiReport.runs[type], report.app, report.runs[type]));
+      console.log(reportCompare(vkuiVersion ? `vkui (${vkuiVersion})` : "vkui", vkuiReport.runs[type], report.app, report.runs[type]));
     });
   });
