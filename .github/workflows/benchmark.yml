@@ -1,10 +1,39 @@
 name: Run Benchmarks
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      vkui-version:
+        description: 'VKUI branch name (e.g. "master") or tag (e.g. "v4.0.2")'
+        required: false
 
 jobs:
+  build-vkui:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+
+      - run: yarn
+      - run: npx lerna bootstrap --scope @vkui-benchmarks/vkui-benchmark
+      - name: install vkui ${{ github.event.inputs.version }}
+        if: ${{ github.event.inputs.version != null }}
+        run: npx lerna exec --scope @vkui-benchmarks/vkui-benchmark -- yarn add 'https://github.com/VKCOM/VKUI.git\#${{ github.event.inputs.version }}'
+      - run: yarn build:vkui
+      - name: deploy to surge
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: npx surge ./apps/vkui-benchmark/build vkui-benchmark.surge.sh
+
   prepare-report:
     runs-on: ubuntu-latest
+
+    needs: buikd-vkui
 
     steps:
       - uses: actions/checkout@v2
