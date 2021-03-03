@@ -8,7 +8,7 @@ jobs:
     
     strategy:
       matrix:
-        app: ["vkui", "mui", "yandex", "f7"]
+        app: ["vkui", "mui", "yandex", "f7", "spectrum"]
 
     steps:
       - uses: actions/checkout@v2
