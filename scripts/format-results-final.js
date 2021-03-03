@@ -3,9 +3,14 @@
 const fs = require("fs");
 const path = require("path");
 
+const vkuiCurrentVersion = require("../apps/vkui-benchmark/package.json").dependencies["@vkontakte/vkui"];
+console.log(vkuiCurrentVersion);
+
+const vkuiVersion = process.argv[2];
+
 const vkuiReport = require(path.resolve(
   __dirname,
-  "../results/results-vkui/vkui.json"
+  vkuiVersion ? "../results/results-vkui-versioned/vkui-versioned.json" : "../results/results-vkui/vkui.json"
 ));
 
 function compare(v1, v2) {
@@ -50,7 +55,7 @@ const SEPARATOR = `
 `;
 
 fs.readdirSync(path.resolve(__dirname, "../results"))
-  .filter((file) => !file.startsWith("results-vkui"))
+  .filter((file) => file !== (vkuiVersion ? "results-vkui-versioned" : "results-vkui"))
   .forEach((file, i) => {
     const report = require(path.resolve(
       __dirname,
@@ -62,11 +67,12 @@ fs.readdirSync(path.resolve(__dirname, "../results"))
       console.log(SEPARATOR);
     }
 
-    console.log(`## \`vkui\` vs \`${report.app}\`:`);
+    const app = report.app === "vkui" ? `vkui (${vkuiCurrentVersion})` : report.app;
+    console.log(`## \`vkui (${vkuiVersion ? vkuiVersion : vkuiCurrentVersion})\` vs \`${app}\`:`);
     console.log(`| app | type (app link) | report | performance | accessibility | best-practices | seo | pwa |
 |-|-|-|-|-|-|-|-|`);
 
     ["default", "modals", "list"].forEach((type) => {
-      console.log(reportCompare("vkui", vkuiReport.runs[type], report.app, report.runs[type]));
+      console.log(reportCompare(vkuiVersion ? `vkui (${vkuiVersion})` : `vkui (${vkuiCurrentVersion})`, vkuiReport.runs[type], app, report.runs[type]));
     });
   });
