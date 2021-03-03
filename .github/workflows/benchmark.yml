@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ github.event.inputs.vkui-version }}"
+        if: ${{ !github.event.inputs.vkui-version }}
 
 
   # build-vkui:
