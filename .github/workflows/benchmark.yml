@@ -8,12 +8,6 @@ on:
         required: false
 
 jobs:
-  playground:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "${{ github.event.inputs.vkui-version }}"
-        if: ${{ !github.event.inputs.vkui-version }}
-
   build-vkui:
     runs-on: ubuntu-latest
 
@@ -73,11 +67,7 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.build-vkui.outputs.matrix) }}
   
-      # matrix:
-      #   app: ["vkui", "mui", "yandex", "f7"]
-
     steps:
-      - run: echo 
       - uses: actions/checkout@v2
       - name: Lighthouse CI Action
         id: benchmark
