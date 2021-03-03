@@ -9,10 +9,12 @@
     "build:mui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/mui-benchmark build",
     "build:yandex": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/yandex-benchmark build",
     "build:f7": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/f7-benchmark build",
+    "build:spectrum": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/spectrum-benchmark build",
     "start:vkui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/vkui-benchmark start",
     "start:mui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/mui-benchmark start",
     "start:yandex": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/yandex-benchmark start",
-    "start:f7": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/f7-benchmark start"
+    "start:f7": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/f7-benchmark start",
+    "start:spectrum": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/spectrum-benchmark start"
   },
   "devDependencies": {
     "lerna": "^3.22.1",
