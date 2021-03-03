@@ -50,7 +50,7 @@ const SEPARATOR = `
 `;
 
 fs.readdirSync(path.resolve(__dirname, "../results"))
-  .filter((file) => !file.startsWith("results-vkui"))
+  .filter((file) => file !== "results-vkui")
   .forEach((file, i) => {
     const report = require(path.resolve(
       __dirname,

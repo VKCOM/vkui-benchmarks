@@ -19,21 +19,38 @@ jobs:
           node-version: "14"
 
       - run: yarn
+        if: ${{ !github.event.inputs.version }}
       - run: npx lerna bootstrap --scope @vkui-benchmarks/vkui-benchmark
+        if: ${{ !github.event.inputs.version }}
       - name: install vkui ${{ github.event.inputs.version }}
-        if: ${{ github.event.inputs.version != null }}
+        if: ${{ !github.event.inputs.version }}
         run: npx lerna exec --scope @vkui-benchmarks/vkui-benchmark -- yarn add 'https://github.com/VKCOM/VKUI.git\#${{ github.event.inputs.version }}'
       - run: yarn build:vkui
+        if: ${{ !github.event.inputs.version }}
       - name: deploy to surge
+        if: ${{ !github.event.inputs.version }}
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: npx surge ./apps/vkui-benchmark/build vkui-benchmark.surge.sh
+        run: npx surge ./apps/vkui-benchmark/build vkui-versioned-benchmark.surge.sh
+
+  setup-matrix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: setup-matrix
+        run: |
+          matrix=$(node -e '
+          const hasVersion = "${{ github.event.inputs.version }}"
+          ')
+          echo ::set-output name=matrix::$matrix
 
   prepare-report:
     runs-on: ubuntu-latest
 
-    needs: buikd-vkui
+    needs:
+      - setup-matrix
+      - build-vkui
 
     steps:
       - uses: actions/checkout@v2
@@ -54,7 +71,7 @@ jobs:
 
     strategy:
       matrix:
-        app: ["vkui", "mui", "yandex", "f7"]
+        app: ${{ fromJson(["vkui", "mui", "yandex", "f7"]) }}
 
     steps:
       - uses: actions/checkout@v2
