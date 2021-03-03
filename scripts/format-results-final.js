@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 
 const vkuiCurrentVersion = require("../apps/vkui-benchmark/package.json").dependencies["@vkontakte/vkui"];
-console.log(vkuiCurrentVersion);
 
 const vkuiVersion = process.argv[2];
 
