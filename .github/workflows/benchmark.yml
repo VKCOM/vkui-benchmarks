@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: "14"
 
-      - run: echo "${{ fromJson('[["vkui", "vkui-versioned", "mui", "yandex", "f7"], ["vkui", "mui", "yandex", "f7"]]')[github.event.inputs.version != ""] }}"
+      - run: echo "${{ github.event.inputs.version }}"
       - run: yarn
         if: ${{ github.event.inputs.version != "" }}
       - run: npx lerna bootstrap --scope @vkui-benchmarks/vkui-benchmark
