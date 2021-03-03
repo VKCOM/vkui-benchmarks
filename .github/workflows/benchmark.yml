@@ -13,7 +13,6 @@ jobs:
     steps:
       - run: echo "${{ github.event.inputs.vkui-version }}"
         if: ${{ !github.event.inputs.vkui-version }}
-      - run: echo "${{ fromJson('[[\"vkui\", \"vkui-versioned\", \"mui\", \"yandex\", \"f7\"], [\"vkui\", \"mui\", \"yandex\", \"f7\"]]')[github.event.inputs.vkui-version] }}"
 
   build-vkui:
     runs-on: ubuntu-latest
@@ -40,10 +39,14 @@ jobs:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: npx surge ./apps/vkui-benchmark/build vkui-versioned-benchmark.surge.sh
-      - run: echo "${{ fromJson('[[\"vkui\", \"vkui-versioned\", \"mui\", \"yandex\", \"f7\"], [\"vkui\", \"mui\", \"yandex\", \"f7\"]]')[github.event.inputs.vkui-version] }}"
+      - name: prepare matrix
+        id: prepare-matrix
+        run: |
+          matrix="$(./scripts/get-matrix.js ${{ github.event.inputs.vkui-version }})"
+          echo "::set-output name=results::$formatted"
 
     outputs:
-      matrix: ${{ fromJson('[["vkui", "vkui-versioned", "mui", "yandex", "f7"], ["vkui", "mui", "yandex", "f7"]]')[github.event.inputs.vkui-version] }}
+      matrix: ${{ steps.prepare-matrix.outputs.matrix }}
 
   prepare-report:
     runs-on: ubuntu-latest
@@ -68,10 +71,10 @@ jobs:
      - build-vkui
 
     strategy:
-      # matrix: ${{ fromJson([]) }}
+      matrix: ${{ fromJson(needs.build-vkui.outputs.matrix) }}
   
-      matrix:
-        app: ["vkui", "mui", "yandex", "f7"]
+      # matrix:
+      #   app: ["vkui", "mui", "yandex", "f7"]
 
     steps:
       - run: echo 
@@ -116,7 +119,7 @@ jobs:
       - name: combine results
         id: combine-results
         run: |
-          formatted="$(./scripts/format-results-final.js)"
+          formatted="$(./scripts/format-results-final.js ${{ github.event.inputs.vkui-version }})"
           formatted="${formatted//'%'/'%25'}"
           formatted="${formatted//$'\n'/'%0A'}"
           formatted="${formatted//$'\r'/'%0D'}"
