@@ -11,14 +11,14 @@ import {UserContext} from "../index";
 export const Navbar = ({nav, activeNav, setter, user = false, userAction = () => {}}) => {
     const [navContent, setNavContent] = useState(<></>);
     useEffect(() => {
-        {nav && setNavContent(nav.map((item) => {
+        nav && setNavContent(nav.map((item) => {
             return <GlobalNavigationBarLink
                 onClick={_=>{setter(item.id)}}
                 active={activeNav === item.id}
                 label={item.label}
                 id={item.id}/>
-        }))}
-    }, [nav, activeNav]);
+        }))
+    }, [nav, activeNav, setter]);
 
     return (
         <GlobalNavigationBar>
