@@ -33,6 +33,8 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.playground.outputs.matrix) }}
   
+    steps:
+      - run: echo "${{ needs.playground.outputs.matrix }}"
 
   # build-vkui:
   #   runs-on: ubuntu-latest
