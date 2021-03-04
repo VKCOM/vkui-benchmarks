@@ -8,145 +8,116 @@ on:
         required: false
 
 jobs:
-  playground:
+  build-vkui:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+
+      - run: yarn
+        if: ${{ github.event.inputs.vkui-version }}
+      - run: npx lerna bootstrap --scope @vkui-benchmarks/vkui-benchmark
+        if: ${{ github.event.inputs.vkui-version }}
+      - name: install vkui ${{ github.event.inputs.version }}
+        if: ${{ github.event.inputs.vkui-version }}
+        run: npx lerna exec --scope @vkui-benchmarks/vkui-benchmark -- yarn add 'https://github.com/VKCOM/VKUI.git\#${{ github.event.inputs.version }}'
+      - run: yarn build:vkui
+        if: ${{ github.event.inputs.vkui-version }}
+      - name: deploy to surge
+        if: ${{ github.event.inputs.vkui-version }}
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: npx surge ./apps/vkui-benchmark/build vkui-versioned-benchmark.surge.sh
       - name: prepare matrix
         id: prepare-matrix
         run: |
           matrix="$(./scripts/get-matrix.js ${{ github.event.inputs.vkui-version }})"
-          echo "$matrix"
           echo "::set-output name=matrix::$matrix"
-      - run: echo "${{ steps.prepare-matrix.outputs.matrix }}"
 
     outputs:
       matrix: ${{ steps.prepare-matrix.outputs.matrix }}
 
-  playground-matrix:
+  prepare-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: JasonEtco/create-an-issue@v2
+        id: create-issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ID: ${{ github.run_id }}
+          NUMBER: ${{ github.run_number }}
+          RUN_LINK: "https://github.com/ewgenius/vkui-benchmarks/actions/runs/${{ github.run_id }}"
+    outputs:
+      issue: ${{ steps.create-issue.outputs.number }}
+
+  benchmark:
     runs-on: ubuntu-latest
 
     needs:
-     - playground
+     - prepare-report
+     - build-vkui
 
     strategy:
-      matrix: ${{ fromJson(needs.playground.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.build-vkui.outputs.matrix) }}
   
     steps:
-      - run: echo "${{ needs.playground.outputs.matrix }}"
+      - uses: actions/checkout@v2
+      - name: Lighthouse CI Action
+        id: benchmark
+        uses: treosh/lighthouse-ci-action@v7
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ matrix.app }}-$GITHUB_RUN_ID
+        with:
+          temporaryPublicStorage: true
+          configPath: ./lighthouserc
+          urls: |
+            https://${{ matrix.app }}-benchmark.surge.sh
+            https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
+            https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
+      - name: save results
+        id: save-results
+        run: |
+          manifest='${{ steps.benchmark.outputs.manifest }}'
+          links='${{ steps.benchmark.outputs.links }}'
+          mkdir -p ./results
+          ./scripts/format-results-partial.js ${{ matrix.app }} $manifest $links > ./results/${{ matrix.app }}.json
+      - name: upload results to artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: results-${{ matrix.app }}
+          path: ./results/${{ matrix.app }}.json
 
-  # build-vkui:
-  #   runs-on: ubuntu-latest
+  finalize-report:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Setup node
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: "14"
+    needs:
+      - prepare-report
+      - benchmark
 
-  #     - run: yarn
-  #       if: ${{ github.event.inputs.vkui-version }}
-  #     - run: npx lerna bootstrap --scope @vkui-benchmarks/vkui-benchmark
-  #       if: ${{ github.event.inputs.vkui-version }}
-  #     - name: install vkui ${{ github.event.inputs.version }}
-  #       if: ${{ github.event.inputs.vkui-version }}
-  #       run: npx lerna exec --scope @vkui-benchmarks/vkui-benchmark -- yarn add 'https://github.com/VKCOM/VKUI.git\#${{ github.event.inputs.version }}'
-  #     - run: yarn build:vkui
-  #       if: ${{ github.event.inputs.vkui-version }}
-  #     - name: deploy to surge
-  #       if: ${{ github.event.inputs.vkui-version }}
-  #       env:
-  #         SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-  #         SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-  #       run: npx surge ./apps/vkui-benchmark/build vkui-versioned-benchmark.surge.sh
-  #     - name: prepare matrix
-  #       id: prepare-matrix
-  #       run: |
-  #         matrix="$(./scripts/get-matrix.js ${{ github.event.inputs.vkui-version }})"
-  #         echo "$matrix"
-  #         echo "::set-output name=matrix::$matrix"
-
-  #   outputs:
-  #     matrix: ${{ steps.prepare-matrix.outputs.matrix }}
-
-  # prepare-report:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: JasonEtco/create-an-issue@v2
-  #       id: create-issue
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         ID: ${{ github.run_id }}
-  #         NUMBER: ${{ github.run_number }}
-  #         RUN_LINK: "https://github.com/ewgenius/vkui-benchmarks/actions/runs/${{ github.run_id }}"
-  #   outputs:
-  #     issue: ${{ steps.create-issue.outputs.number }}
-
-  # benchmark:
-  #   runs-on: ubuntu-latest
-
-  #   needs:
-  #    - prepare-report
-  #    - build-vkui
-
-  #   strategy:
-  #     matrix: ${{ fromJson(needs.build-vkui.outputs.matrix) }}
-  
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Lighthouse CI Action
-  #       id: benchmark
-  #       uses: treosh/lighthouse-ci-action@v7
-  #       env:
-  #         LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ matrix.app }}-$GITHUB_RUN_ID
-  #       with:
-  #         temporaryPublicStorage: true
-  #         configPath: ./lighthouserc
-  #         urls: |
-  #           https://${{ matrix.app }}-benchmark.surge.sh
-  #           https://${{ matrix.app }}-benchmark.surge.sh?mode=modals
-  #           https://${{ matrix.app }}-benchmark.surge.sh?mode=burn
-  #     - name: save results
-  #       id: save-results
-  #       run: |
-  #         manifest='${{ steps.benchmark.outputs.manifest }}'
-  #         links='${{ steps.benchmark.outputs.links }}'
-  #         mkdir -p ./results
-  #         ./scripts/format-results-partial.js ${{ matrix.app }} $manifest $links > ./results/${{ matrix.app }}.json
-  #     - name: upload results to artifact
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: results-${{ matrix.app }}
-  #         path: ./results/${{ matrix.app }}.json
-
-  # finalize-report:
-  #   runs-on: ubuntu-latest
-
-  #   needs:
-  #     - prepare-report
-  #     - benchmark
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/download-artifact@v2
-  #       with:
-  #         path: ./results
-  #     - name: combine results
-  #       id: combine-results
-  #       run: |
-  #         formatted="$(./scripts/format-results-final.js ${{ github.event.inputs.vkui-version }})"
-  #         formatted="${formatted//'%'/'%25'}"
-  #         formatted="${formatted//$'\n'/'%0A'}"
-  #         formatted="${formatted//$'\r'/'%0D'}"
-  #         echo "::set-output name=results::$formatted"
-  #     - name: add results to report
-  #       uses: jungwinter/comment@v1
-  #       with:
-  #         type: create
-  #         body: "${{ steps.combine-results.outputs.results }}"
-  #         issue_number: ${{ needs.prepare-report.outputs.issue }}
-  #         token: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          path: ./results
+      - name: combine results
+        id: combine-results
+        run: |
+          formatted="$(./scripts/format-results-final.js ${{ github.event.inputs.vkui-version }})"
+          formatted="${formatted//'%'/'%25'}"
+          formatted="${formatted//$'\n'/'%0A'}"
+          formatted="${formatted//$'\r'/'%0D'}"
+          echo "::set-output name=results::$formatted"
+      - name: add results to report
+        uses: jungwinter/comment@v1
+        with:
+          type: create
+          body: "${{ steps.combine-results.outputs.results }}"
+          issue_number: ${{ needs.prepare-report.outputs.issue }}
+          token: ${{ secrets.GITHUB_TOKEN }}
