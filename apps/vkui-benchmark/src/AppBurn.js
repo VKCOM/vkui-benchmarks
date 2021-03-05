@@ -1,8 +1,8 @@
 import {
     Avatar,
-    Group,
+    Group, IconButton,
     Panel,
-    PanelHeader, Radio,
+    PanelHeader,
     SimpleCell,
     SplitCol,
     SplitLayout,
@@ -12,7 +12,7 @@ import {
     VKCOM
 } from "@vkontakte/vkui";
 import {useMemo, useState} from "react";
-import {Icon20BookOutline} from "@vkontakte/icons";
+import {Icon20BookOutline, Icon24CheckBoxOn} from "@vkontakte/icons";
 import {SideButtons} from "./components/SideButtons";
 
 export const AppBurn = (props) => {
@@ -25,18 +25,17 @@ export const AppBurn = (props) => {
         for (let i = 0; i < 1000; i++) {
             genList.push(
                 <SimpleCell
-                    disabled
                     key={'simpleCell_' + i}
                     before={<Avatar size={36}><Icon20BookOutline/></Avatar>}
                     description="Grab a cup of coffee"
-                    after={<Radio/>}
+                    after={<IconButton><Icon24CheckBoxOn/></IconButton>}
                 >
                     Random text
                 </SimpleCell>
             )
         }
         setListContent(genList);
-    }, [listContent])
+    }, [listContent]);
 
     return (
         <SplitLayout
