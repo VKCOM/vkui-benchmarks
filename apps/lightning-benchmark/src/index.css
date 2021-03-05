@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App__sidebar > .slds-button > svg {
+  margin-right: 6px;
+}
+
+.HomePage {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 12px;
+  grid-gap: 12px;
+}
+
+.FeedPost__time {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.FeedPost__content {
+  padding: 0 16px;
+}
+
+.ConfirmEmail__body, .EditProfileInfo__body {
+  padding: 16px;
+}
+
+.EditProfileInfo__body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.FeaturedPost__content, .SettingsPage, .BurnPage, .ModalPage {
+  padding: 12px;
+}
