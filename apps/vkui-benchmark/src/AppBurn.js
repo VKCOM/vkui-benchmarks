@@ -1,9 +1,8 @@
 import {
-    Avatar,
+    Avatar, Cell,
     Group, IconButton,
     Panel,
     PanelHeader,
-    SimpleCell,
     SplitCol,
     SplitLayout,
     usePlatform,
@@ -12,7 +11,7 @@ import {
     VKCOM
 } from "@vkontakte/vkui";
 import {useMemo, useState} from "react";
-import {Icon20BookOutline, Icon24CheckBoxOn} from "@vkontakte/icons";
+import {Icon20BookOutline, Icon24CheckBoxOff} from "@vkontakte/icons";
 import {SideButtons} from "./components/SideButtons";
 
 export const AppBurn = (props) => {
@@ -24,14 +23,15 @@ export const AppBurn = (props) => {
         let genList = listContent;
         for (let i = 0; i < 1000; i++) {
             genList.push(
-                <SimpleCell
-                    key={'simpleCell_' + i}
+                <Cell
+                    key={'Cell_' + i}
                     before={<Avatar size={36}><Icon20BookOutline/></Avatar>}
                     description="Grab a cup of coffee"
-                    after={<IconButton><Icon24CheckBoxOn/></IconButton>}
+                    selectable
+                    after={<IconButton><Icon24CheckBoxOff/></IconButton>}
                 >
                     Random text
-                </SimpleCell>
+                </Cell>
             )
         }
         setListContent(genList);
@@ -46,7 +46,7 @@ export const AppBurn = (props) => {
                 <View activePanel='panel'>
                     <Panel id='panel'>
                         <PanelHeader right={<SideButtons/>}>
-                            1000 SimpleCell's
+                            1000 Cells
                         </PanelHeader>
                         <Group>
                             {listContent}
