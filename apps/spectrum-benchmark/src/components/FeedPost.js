@@ -8,7 +8,7 @@ export const FeedPost = ({avatar, children, time, authorName}) => {
                 gap="size-100"
             >
                 <Flex gap="size-100">
-                    <Image width="size-500" height="size-500" alt={authorName} src={avatar} UNSAFE_style={{borderRadius: '50%'}}/>
+                    <Image width="size-500" height="size-500" alt="post avatar" src={avatar} UNSAFE_style={{borderRadius: '50%'}}/>
                     <Flex direction="column">
                         <Text>{authorName}</Text>
                         <Text color="secondary">{time}</Text>

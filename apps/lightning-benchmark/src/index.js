@@ -4,7 +4,7 @@ import './index.css';
 import {IconSettings} from "@salesforce/design-system-react";
 import {AppDefault} from './AppDefault';
 import bridge from "@vkontakte/vk-bridge-mock";
-import {AppBurn} from "./components/AppBurn";
+import {AppBurn} from "./AppBurn";
 import {AppModals} from "./AppModals";
 
 export const UserContext = createContext();

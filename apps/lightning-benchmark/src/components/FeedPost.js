@@ -3,7 +3,7 @@ import {Avatar, Card} from "@salesforce/design-system-react";
 export const FeedPost = ({avatar, children, time, authorName}) => {
     return (
         <Card
-            icon={<Avatar imgSrc={avatar}/>}
+            icon={<Avatar alt="post avatar" imgSrc={avatar}/>}
             className="FeedPost__body"
             heading={
                 <div className="FeedPost__heading">

@@ -39,7 +39,7 @@ export const FeedPost = (props) => {
             <Card>
                 <CardHeader
                     avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar} src={avatar}/>
+                        <Avatar alt="user avatar" className={classes.avatar} src={avatar}/>
                     }
                     action={
                         <IconButton aria-label="settings">

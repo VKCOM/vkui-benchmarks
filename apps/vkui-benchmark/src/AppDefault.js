@@ -144,7 +144,7 @@ export const AppDefault = withAdaptivity((props) => {
                                     setActiveModal('edit');
                                 }}
                                 aside={<Icon16Dropdown/>}
-                                before={<Avatar src={value.photo_100} size={36}/>}
+                                before={<Avatar alt="user avatar" src={value.photo_100} size={36}/>}
                                 status={value && `${value.city.title}, ${value.country.title}`}>
                                 {value && `${value.first_name} ${value.last_name}`}
                             </PanelHeaderContent>

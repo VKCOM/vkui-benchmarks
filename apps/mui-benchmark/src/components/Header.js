@@ -70,7 +70,7 @@ export const Header = ({open, toggleOpen, classes, children, drawerHidden}) => {
                             >
                                 <ListItem divider>
                                     <ListItemAvatar>
-                                        <Avatar src={value.photo_100}/>
+                                        <Avatar alt="user avatar" src={value.photo_100}/>
                                     </ListItemAvatar>
                                     <ListItemText
                                         primary={`${value.first_name} ${value.last_name}`}

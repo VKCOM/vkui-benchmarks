@@ -7,7 +7,7 @@ export const FeedPost = ({avatar, children, time, authorName}) => {
         <Card mode="outline">
             <div style={{padding: 4}}>
                 <SimpleCell
-                    before={<Avatar size={36} src={avatar}/>}
+                    before={<Avatar size={36} alt={authorName} src={avatar}/>}
                     description={time}
                     after={<IconButton><Icon28ChevronDownOutline/></IconButton>}
                 >

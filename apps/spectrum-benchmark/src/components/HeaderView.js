@@ -12,7 +12,7 @@ export const HeaderView = ({children, user}) => {
                     {user && <UserContext.Consumer>
                         {value => <Flex alignItems="center" gap="size-100">
                             <View UNSAFE_style={{borderRadius: '50%', overflow: 'hidden'}}>
-                                <Image width="size-400" height="size-400" src={value.photo_100} alt={value.first_name}/>
+                                <Image width="size-400" height="size-400" src={value.photo_100} alt="user avatar"/>
                             </View>
                             <Text>{`${value.first_name} ${value.last_name}`}</Text>
                         </Flex>}

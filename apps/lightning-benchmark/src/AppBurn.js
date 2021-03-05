@@ -1,4 +1,4 @@
-import {Navbar} from "./Navbar";
+import {Navbar} from "./components/Navbar";
 import {useState, useMemo} from "react";
 import {Radio} from "@salesforce/design-system-react";
 
