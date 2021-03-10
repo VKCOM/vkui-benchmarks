@@ -12,13 +12,15 @@
     "build:spectrum": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/spectrum-benchmark build",
     "build:lightning": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/lightning-benchmark build",
     "build:ant": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/ant-benchmark build",
+    "build:fluent": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/fluent-benchmark build",
     "start:vkui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/vkui-benchmark start",
     "start:mui": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/mui-benchmark start",
     "start:yandex": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/yandex-benchmark start",
     "start:f7": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/f7-benchmark start",
     "start:spectrum": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/spectrum-benchmark start",
     "start:lightning": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/lightning-benchmark start",
-    "start:ant": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/ant-benchmark start"
+    "start:ant": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/ant-benchmark start",
+    "start:fluent": "SKIP_PREFLIGHT_CHECK=true npx lerna run --scope @vkui-benchmarks/fluent-benchmark start"
   },
   "devDependencies": {
     "lerna": "^3.22.1",
