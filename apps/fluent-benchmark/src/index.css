@@ -1,0 +1,23 @@
+.Side {
+    padding: 12px 0 12px;
+}
+
+.FeedPost__content {
+    padding: 0 12px 12px;
+}
+
+.FeaturedFeed__subtitle, .FeaturedFeed__text, .FeaturedFeed__title {
+    height: auto;
+    padding-bottom: 0;
+}
+
+.FeaturedFeed__text {
+    padding-bottom: 12px;
+}
+
+.NewsFeed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(auto, 320px));
+    justify-content: center;
+    grid-gap: 12px;
+}
