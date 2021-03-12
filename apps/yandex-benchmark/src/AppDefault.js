@@ -5,7 +5,7 @@ import {DefaultHeader} from "./components/DefaultHeader";
 import {PageView} from "./components/PageView";
 import {useState} from "react";
 import {HomePage} from "./pages/HomePage";
-import {FeaturedFeed} from "./components/Featured";
+import {FeaturedFeed} from "./components/FeaturedFeed";
 import {SettingsPage} from "./pages/SettingsPage";
 import {Modal as ModalDesktop, withThemeNormal} from "@yandex/ui/Modal/desktop";
 import {compose} from "@bem-react/core";
