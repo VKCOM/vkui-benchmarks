@@ -15,7 +15,7 @@ export const NewsFeed = () => {
                     onCancel={()=>{setSetupContinue(false)}}
                 />
             }
-            {[1, 2, 3].map(key => (
+            {[1, 2, 3, 4, 5, 6].map(key => (
                 <FeedPost
                     key={key}
                     authorName='Григорий Горбовской'

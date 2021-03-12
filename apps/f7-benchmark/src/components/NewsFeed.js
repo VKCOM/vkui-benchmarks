@@ -24,7 +24,7 @@ export const NewsFeed = () => {
             }
             <BlockTitle>News</BlockTitle>
             <Block>
-                {[1, 2, 3].map(key => (
+                {[1, 2, 3, 4, 5, 6].map(key => (
                     <FeedPost
                         key={key}
                         authorName='Григорий Горбовской'
