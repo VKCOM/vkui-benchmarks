@@ -35,10 +35,6 @@ export const HomePage = (props) => {
             <Grid container spacing={2}>
                 <Grid item>
                     <Card>
-                        <CardMedia
-                            style={{height: 256}}
-                            image="https://sun9-40.userapi.com/impg/s2gwpRPjiR3CPhwror6S563MdKwRk8yPocFJmA/YWVaQgf9JkQ.jpg?size=512x512&quality=96&proxy=1&sign=c475fddfe12375444acb518a7dcd224e&type=album"
-                        />
                         <CardContent>
                             <Typography className={classes.title} color="textSecondary" gutterBottom>
                                 VK
@@ -56,10 +52,6 @@ export const HomePage = (props) => {
                 </Grid>
                 <Grid item>
                     <Card>
-                        <CardMedia
-                            style={{height: 256}}
-                            image="https://sferum.ru/static/sidebar_promo_card_image_2x.7dfbf52765761f171964194989fe09cc.png"
-                        />
                         <CardContent>
                             <Typography className={classes.title} color="textSecondary" gutterBottom>
                                 Sferum

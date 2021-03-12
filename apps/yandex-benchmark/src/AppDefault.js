@@ -5,7 +5,7 @@ import {DefaultHeader} from "./components/DefaultHeader";
 import {PageView} from "./components/PageView";
 import {useState} from "react";
 import {HomePage} from "./pages/HomePage";
-import {Featured} from "./components/Featured";
+import {FeaturedFeed} from "./components/Featured";
 import {SettingsPage} from "./pages/SettingsPage";
 import {Modal as ModalDesktop, withThemeNormal} from "@yandex/ui/Modal/desktop";
 import {compose} from "@bem-react/core";
@@ -73,7 +73,7 @@ const AppDefault = () => {
                     </PageView>
                 </main>
                 <aside className="App__aside">
-                    <Featured/>
+                    <FeaturedFeed/>
                 </aside>
             </div>
         </>

@@ -12,8 +12,6 @@ export const FeaturedCard = ({subtitle, header, caption, image}) => {
     const Text = compose(withTypographySubheaderM, withTypographyHeadlineXS, withTypographyCaptionXL)(TextS)
     return (
         <div className="Card">
-            <Image imageClassName="FeaturedCard__img" src={image} height={150} width="100%"
-                   borderRadius="12px 12px 0 0"/>
             <Spacer className="FeaturedCard__content" all={12}>
                 <Text typography="subheader-m">
                     {subtitle}
