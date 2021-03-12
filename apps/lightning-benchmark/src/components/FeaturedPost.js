@@ -1,4 +1,4 @@
-export const FeaturedPost = ({title, subtitle, text, img}) => {
+export const FeaturedPost = ({title, subtitle, text}) => {
     return (
         <article className="slds-card FeaturedPost__body">
             <div className="FeaturedPost__content">

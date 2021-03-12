@@ -1,6 +1,6 @@
-import {Image, Text, View} from "@adobe/react-spectrum";
+import {Text, View} from "@adobe/react-spectrum";
 
-export const FeaturedItem = ({title, subtitle, text, img}) => {
+export const FeaturedItem = ({title, subtitle, text}) => {
     return (
         <View backgroundColor="gray-200" overflow="hidden" borderRadius="regular">
             <View padding="size-100">
