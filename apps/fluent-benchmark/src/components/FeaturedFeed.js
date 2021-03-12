@@ -1,4 +1,4 @@
-import {DocumentCard, DocumentCardPreview, DocumentCardTitle, ImageFit, Stack} from "@fluentui/react";
+import {DocumentCard, DocumentCardTitle, Stack} from "@fluentui/react";
 
 export const FeaturedFeed = ({items}) => {
     return <Stack className="Side" gap={12}>

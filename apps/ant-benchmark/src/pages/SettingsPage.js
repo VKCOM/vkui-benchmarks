@@ -11,9 +11,9 @@ export const SettingsPage = (props) => {
         <div id={id} style={{padding: 12}}>
             <Row direction="vertical">
                 {shouldContinueSetup &&
-                    <ConfirmEmail
-                        onEnter={_=>setSetupContinue(false)}
-                    />
+                <ConfirmEmail
+                    onEnter={_ => setSetupContinue(false)}
+                />
                 }
                 <ProfileEdit/>
             </Row>

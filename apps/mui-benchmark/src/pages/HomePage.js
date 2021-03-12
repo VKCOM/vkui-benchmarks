@@ -1,4 +1,4 @@
-import {Card, CardContent, CardMedia, Container, Grid, Link, makeStyles, Typography} from "@material-ui/core";
+import {Card, CardContent, Container, Grid, Link, makeStyles, Typography} from "@material-ui/core";
 import {FeedPost} from "../components/FeedPost";
 import {ConfirmEmail} from "../components/ConfirmEmail";
 import {useState} from "react";

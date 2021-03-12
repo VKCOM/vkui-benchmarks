@@ -1,6 +1,7 @@
 import {Header} from "./components/Header";
 import {
-    Avatar, Checkbox,
+    Avatar,
+    Checkbox,
     Container,
     List,
     ListItem,

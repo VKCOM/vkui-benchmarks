@@ -11,11 +11,11 @@ export const HomePage = (props) => {
         <div id={id} style={{padding: 12}}>
             <Row direction="vertical">
                 {shouldContinueSetup &&
-                    <ConfirmEmail
-                        canceable
-                        onEnter={_=>setSetupContinue(false)}
-                        onCancel={_=>setSetupContinue(false)}
-                    />
+                <ConfirmEmail
+                    canceable
+                    onEnter={_ => setSetupContinue(false)}
+                    onCancel={_ => setSetupContinue(false)}
+                />
                 }
             </Row>
             <NewsFeed/>

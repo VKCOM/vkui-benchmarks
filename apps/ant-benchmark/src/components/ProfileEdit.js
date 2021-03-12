@@ -9,10 +9,11 @@ export const ProfileEdit = () => {
     return (
         <Col span={12}>
             <Card title="Edit your profile info">
-                <Button onClick={_=>setModalVisible(true)}>
+                <Button onClick={_ => setModalVisible(true)}>
                     Edit
                 </Button>
-                <Modal title="Edit your profile" visible={isModalVisible} onOk={_=>setModalVisible(false)} onCancel={_=>setModalVisible(false)}>
+                <Modal title="Edit your profile" visible={isModalVisible} onOk={_ => setModalVisible(false)}
+                       onCancel={_ => setModalVisible(false)}>
                     <UserContext.Consumer>
                         {value => <Space style={{width: '100%'}} direction="vertical">
                             <Input placeholder={value.first_name}/>

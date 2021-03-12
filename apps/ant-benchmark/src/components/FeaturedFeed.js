@@ -1,4 +1,4 @@
-import {Card, Image, Space} from "antd";
+import {Card, Space} from "antd";
 
 export const FeaturedFeed = ({items}) => {
     return <Space direction="vertical" style={{width: 300, padding: "12px"}}>

@@ -1,6 +1,8 @@
 import {
-    Avatar, Cell,
-    Group, IconButton,
+    Avatar,
+    Cell,
+    Group,
+    IconButton,
     Panel,
     PanelHeader,
     SplitCol,

@@ -7,7 +7,9 @@ export const Nav = ({nav, activeNav, setter}) => {
     useEffect(() => {
         nav && setNavContent(nav.map((item) => {
             return <Menu.Item
-                onClick={_=>{setter(item.id)}}
+                onClick={_ => {
+                    setter(item.id)
+                }}
                 active={activeNav === item.id}
                 key={item.id}>
                 {item.label}

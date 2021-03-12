@@ -1,89 +1,89 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .App {
-    display: flex;
-    justify-content: center;
-    width: 100vw;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
 }
 
 .App__aside {
-    max-width: 256px;
-    width: 100%;
+  max-width: 256px;
+  width: 100%;
 }
 
 .App__content {
-    max-width: 768px;
-    width: 100%;
-    margin: 0 12px;
+  max-width: 768px;
+  width: 100%;
+  margin: 0 12px;
 }
 
 .YandexHeader-NavLink {
-    align-items: center;
+  align-items: center;
 }
 
 .YandexHeader-NavLink .DefaultHeader__text {
-    padding-left: 8px;
-    color: var(--color-typo-primary);
+  padding-left: 8px;
+  color: var(--color-typo-primary);
 }
 
 .ProfileEditContent__name {
-    display: flex;
+  display: flex;
 }
 
 .ProfileEditContent__name .Textinput:not(:first-child) {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
 .ProfileEditContent__body .Textarea {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
 .Text--logo {
-    padding-bottom: 12px;
+  padding-bottom: 12px;
 }
 
 .Card {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-bottom: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .FeedPost__header {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .FeedPost__header .Text {
-    padding-left: 12px;
+  padding-left: 12px;
 }
 
 .FeedPost__header .Button2 {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .FeaturedCard__img {
-    object-fit: scale-down;
+  object-fit: scale-down;
 }
 
 .FeaturedCard__content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .ProfileEditBlock__body {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .ProfileEditBlock__heading {
-    display: inherit;
-    flex-direction: column;
+  display: inherit;
+  flex-direction: column;
 }
 
 .ProfileEditBlock__action {
-    margin-left: auto;
+  margin-left: auto;
 }

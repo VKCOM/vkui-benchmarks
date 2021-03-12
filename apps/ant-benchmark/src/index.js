@@ -15,9 +15,9 @@ const renderDefault = () => {
         bridge.send('VKWebAppGetUserInfo').then(r => {
             ReactDOM.render(
                 <StrictMode>
-                        <UserContext.Provider value={r}>
-                            <AppDefault/>
-                        </UserContext.Provider>
+                    <UserContext.Provider value={r}>
+                        <AppDefault/>
+                    </UserContext.Provider>
                 </StrictMode>,
                 document.getElementById('root')
             );

@@ -8,7 +8,8 @@ import {
     ListInput,
     ListItem,
     Page,
-    Sheet, Toggle,
+    Sheet,
+    Toggle,
     View
 } from "framework7-react";
 import {AppbarGlobal} from "./components/AppbarGlobal";

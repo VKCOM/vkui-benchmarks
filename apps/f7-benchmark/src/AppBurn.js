@@ -1,5 +1,5 @@
 import {App, List, ListItem, Page, Toggle, View} from "framework7-react";
-import {useState, useMemo} from "react";
+import {useMemo, useState} from "react";
 import {AppbarGlobal} from "./components/AppbarGlobal";
 
 export const AppBurn = () => {
@@ -9,7 +9,7 @@ export const AppBurn = () => {
         let genList = listContent;
         for (let i = 0; i < 1000; i++) {
             genList.push(
-                <ListItem key={i} title={"ListItem №"+i}>
+                <ListItem key={i} title={"ListItem №" + i}>
                     <Toggle slot="after"/>
                 </ListItem>
             )

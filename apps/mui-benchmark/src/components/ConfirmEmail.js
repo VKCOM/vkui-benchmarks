@@ -1,12 +1,4 @@
-import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    makeStyles,
-    TextField,
-    Typography,
-} from "@material-ui/core";
+import {Button, Card, CardActions, CardContent, makeStyles, TextField, Typography,} from "@material-ui/core";
 
 export const ConfirmEmail = (
     {
