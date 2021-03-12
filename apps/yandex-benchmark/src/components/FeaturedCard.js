@@ -1,5 +1,4 @@
 import {Spacer} from "@yandex/ui/Spacer";
-import {Image} from "@yandex/ui/Image";
 import {
     Text as TextS,
     withTypographyCaptionXL,
