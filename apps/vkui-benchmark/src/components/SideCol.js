@@ -3,12 +3,15 @@ import {Group, PanelHeader, SimpleCell, Tabbar, TabbarItem, ViewWidth} from "@vk
 
 const SideCol = ({tabs, activeTab, setActiveTab, viewWidth}) => {
     const [content, setContent] = useState([]);
+    const [componentProps, setComponentProps] = useState({});
     const isDesktop = viewWidth >= ViewWidth.TABLET;
+    const isMobile = viewWidth < ViewWidth.SMALL_TABLET;
     const Component = isDesktop ? Group : Tabbar;
 
     useMemo(() => {
         setContent([]);
         if (isDesktop) {
+            setComponentProps({});
             setContent(tabs.map((tab, index) => (
                 <SimpleCell key={index} onClick={() => {
                     setActiveTab(tab.id)
@@ -17,6 +20,7 @@ const SideCol = ({tabs, activeTab, setActiveTab, viewWidth}) => {
                 </SimpleCell>
             )))
         } else {
+            setComponentProps({itemsLayout: isMobile ? 'vertical' : 'horizontal'});
             setContent(tabs.map((tab, index) => (
                 <TabbarItem key={index} onClick={() => {
                     setActiveTab(tab.id)
@@ -30,7 +34,7 @@ const SideCol = ({tabs, activeTab, setActiveTab, viewWidth}) => {
     return (
         <>
             {isDesktop && <PanelHeader>VKUI</PanelHeader>}
-            <Component itemsLayout={viewWidth < ViewWidth.SMALL_TABLET ? 'vertical' : 'horizontal'}>
+            <Component {...componentProps}>
                 {content}
             </Component>
         </>

@@ -2,27 +2,14 @@ import '@vkontakte/vkui/dist/vkui.css';
 import './index.css';
 import {useState} from "react";
 import {
-    Avatar,
-    Button,
-    CardGrid,
-    ContentCard,
-    DatePicker,
     Epic,
-    FormItem,
-    FormLayout,
-    FormLayoutGroup,
-    Input,
-    ModalPage,
-    ModalPageHeader,
     ModalRoot,
     PanelHeader,
-    PanelHeaderContent,
     PopoutWrapper,
     Root,
     ScreenSpinner,
     SplitCol,
     SplitLayout,
-    Textarea,
     usePlatform,
     View,
     ViewWidth,
@@ -30,74 +17,27 @@ import {
     withAdaptivity,
 } from "@vkontakte/vkui";
 import SideCol from "./components/SideCol";
-import {Icon16Dropdown, Icon28HelpOutline, Icon28HomeOutline, Icon28SettingsOutline} from "@vkontakte/icons";
+import {Icon28HelpOutline, Icon28HomeOutline, Icon28SettingsOutline} from "@vkontakte/icons";
 import {Home} from "./panels/Home";
 import {Settings} from "./panels/Settings";
 import {Support} from "./panels/Support";
-import {UserContext} from "./index";
+import {FeaturedFeed} from "./components/FeaturedFeed";
+import {EditProfileModal} from "./modals/EditProfileModal";
 
 export const AppDefault = withAdaptivity((props) => {
     const {viewWidth} = props;
     const [activeStory, setActiveStory] = useState('home');
     const [activeModal, setActiveModal] = useState('edit');
-    const platform = usePlatform();
-    const SecondaryComponent = <SideCol {...props} activeTab={activeStory} setActiveTab={(id) => {
-        setActiveStory(id)
-    }} tabs={[
-        {id: 'home', icon: <Icon28HomeOutline/>, label: 'Home'},
-        {id: 'settings', icon: <Icon28SettingsOutline/>, label: 'Settings'},
-        {id: 'support', icon: <Icon28HelpOutline/>, label: 'Support'},
-    ]}/>;
-
-    const modals = <ModalRoot activeModal={activeModal} onClose={_ => {
-        setActiveModal(null)
-    }}>
-        <ModalPage id='edit' header={<ModalPageHeader>Edit profile</ModalPageHeader>}>
-            <UserContext.Consumer>
-                {value => <FormLayout>
-                    <FormLayoutGroup mode="horizontal">
-                        <FormItem top="First name">
-                            <Input placeholder={value.first_name}/>
-                        </FormItem>
-                        <FormItem top="Last name">
-                            <Input placeholder={value.last_name}/>
-                        </FormItem>
-                    </FormLayoutGroup>
-                    <FormItem top="Date of birth">
-                        <DatePicker
-                            min={{day: 1, month: 1, year: 1970}}
-                            max={{day: 1, month: 1, year: 2006}}
-                            dayPlaceholder={value.bdate.split('.')[0]}
-                            monthPlaceholder={value.bdate.split('.')[1]}
-                            yearPlaceholder={value.bdate.split('.')[2]}
-                        />
-                    </FormItem>
-                    <FormItem top="Bio">
-                        <Textarea placeholder={"Your bio there..."}/>
-                    </FormItem>
-                    <FormLayoutGroup mode='horizontal'>
-                        <FormItem>
-                            <Button onClick={() => {
-                                imitateLongAction()
-                            }} size='l' stretched>
-                                Save
-                            </Button>
-                        </FormItem>
-                        <FormItem>
-                            <Button size='l' mode='secondary' stretched>
-                                Undo
-                            </Button>
-                        </FormItem>
-                    </FormLayoutGroup>
-                </FormLayout>}
-            </UserContext.Consumer>
-        </ModalPage>
-    </ModalRoot>
-
     const [popout, setPopout] = useState(null);
-    const isTablet = viewWidth >= ViewWidth.SMALL_TABLET;
-    const isDesktop = viewWidth >= ViewWidth.TABLET;
-    const MainComponent = isDesktop ? Root : Epic;
+    const platform = usePlatform();
+    const SecondaryComponent =
+        <SideCol {...props} activeTab={activeStory} setActiveTab={(id) => {
+            setActiveStory(id)
+        }} tabs={[
+            {id: "home", icon: <Icon28HomeOutline/>, label: "Home"},
+            {id: "settings", icon: <Icon28SettingsOutline/>, label: "Settings"},
+            {id: "support", icon: <Icon28HelpOutline/>, label: "Support"},
+        ]}/>;
 
     const imitateLongAction = (cb) => {
         setPopout(
@@ -110,6 +50,17 @@ export const AppDefault = withAdaptivity((props) => {
             cb && cb();
         }, 1000);
     }
+
+    const modals =
+        <ModalRoot activeModal={activeModal} onClose={_ => {
+            setActiveModal(null)
+        }}>
+            <EditProfileModal id="edit" imitateLongAction={imitateLongAction}/>
+        </ModalRoot>
+
+    const isTablet = viewWidth >= ViewWidth.SMALL_TABLET;
+    const isDesktop = viewWidth >= ViewWidth.TABLET;
+    const MainComponent = isDesktop ? Root : Epic;
 
     return (
         <SplitLayout
@@ -135,36 +86,7 @@ export const AppDefault = withAdaptivity((props) => {
                     </View>
                 </MainComponent>
             </SplitCol>
-            {isTablet && <SplitCol spaced width="320px" maxWidth="320px">
-                <PanelHeader>
-                    <UserContext.Consumer>
-                        {value =>
-                            <PanelHeaderContent
-                                onClick={() => {
-                                    setActiveModal('edit');
-                                }}
-                                aside={<Icon16Dropdown/>}
-                                before={<Avatar alt="user avatar" src={value.photo_100} size={36}/>}
-                                status={value && `${value.city.title}, ${value.country.title}`}>
-                                {value && `${value.first_name} ${value.last_name}`}
-                            </PanelHeaderContent>
-                        }
-                    </UserContext.Consumer>
-                </PanelHeader>
-                <CardGrid size="l">
-                    <ContentCard
-                        subtitle="VK"
-                        header="We connect people, services and companies"
-                        caption="VK is the largest social network in Russia and the CIS. Our mission is to connect
-                                people, services and companies by creating simple and convenient communication tools."
-                    />
-                    <ContentCard
-                        subtitle="Sferum"
-                        header="Educational platform"
-                        caption="Your school in digital world. Learn and communicate while staying home!"
-                    />
-                </CardGrid>
-            </SplitCol>}
+            {isTablet && <FeaturedFeed setActiveModal={setActiveModal}/>}
         </SplitLayout>
 
     )
