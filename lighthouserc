@@ -2,7 +2,8 @@
   "ci": {
     "collect": {
       "settings": {
-        "preset": "desktop"
+        "preset": "desktop",
+        "maxWaitForFcp": 60000
       }
     }
   }
