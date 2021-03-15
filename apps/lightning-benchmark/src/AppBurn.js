@@ -7,7 +7,7 @@ export const AppBurn = () => {
 
     useMemo(() => {
         let genList = listContent;
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < 500; i++) {
             genList.push(
                 <Radio key={i} labels={{label: `value${i}`}}>
                     {"ListItem №"+i}
