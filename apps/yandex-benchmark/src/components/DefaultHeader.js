@@ -31,7 +31,7 @@ export const DefaultHeader = ({nav, onChange, value, openProfileModal}) => {
                             <>
                                 <HeaderNavItem onClick={() => {
                                     openProfileModal()
-                                }} icon={<UserPic size="m" alt lodpiUrl={value.photo_100} hidpiUrl={value.photo_200}/>}>
+                                }} icon={<UserPic size="m" alt="user avatar" lodpiUrl={value.photo_100} hidpiUrl={value.photo_200}/>}>
                                     <div className="DefaultHeader__text">
                                         {value.first_name} {value.last_name}
                                     </div>
