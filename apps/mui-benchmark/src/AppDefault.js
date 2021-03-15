@@ -106,7 +106,7 @@ export const AppDefault = () => {
     const [open, setOpen] = useState(true);
     const [activePage, setActivePage] = useState('home');
     const [imitatingLA, setImitateLA] = useState(false);
-    const [isDialogOpened, setDialogOpened] = useState(true);
+    const [isDialogOpened, setDialogOpened] = useState(false);
 
     const imitateLongAction = (cb = false) => {
         setImitateLA(true);
