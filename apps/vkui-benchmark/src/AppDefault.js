@@ -27,7 +27,7 @@ import {EditProfileModal} from "./modals/EditProfileModal";
 export const AppDefault = withAdaptivity((props) => {
     const {viewWidth} = props;
     const [activeStory, setActiveStory] = useState('home');
-    const [activeModal, setActiveModal] = useState();
+    const [activeModal, setActiveModal] = useState(null);
     const [popout, setPopout] = useState(null);
     const platform = usePlatform();
     const SecondaryComponent =
