@@ -41,8 +41,8 @@ export const Support = (props) => {
                 {value =>
                     <RichCell multiline text={messageText} disabled
                               before={<Avatar size={32} src={value.photo_100}/>}>
-                        <div style={{display: 'flex'}}><Link>{value.first_name + ' ' + value.last_name}</Link><Text
-                            weight='semibold' style={{
+                        <div style={{display: 'flex'}}><Link><Text weight="semibold">{value.first_name + ' ' + value.last_name}</Text></Link><Text
+                            weight='regular' style={{
                             color: 'var(--text_secondary)',
                             marginLeft: 8
                         }}>{date.getHours() + ':' + leadingZero(date.getMinutes())}</Text></div>
