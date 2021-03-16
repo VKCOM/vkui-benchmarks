@@ -60,7 +60,23 @@ export const AppDefault = withAdaptivity((props) => {
 
     const isTablet = viewWidth >= ViewWidth.SMALL_TABLET;
     const isDesktop = viewWidth >= ViewWidth.TABLET;
-    const MainComponent = isDesktop ? Root : Epic;
+    const AppLayout = [
+        <View key="homeView" id="home" activePanel="home">
+            <Home
+                id="home"
+                imitateLongAction={imitateLongAction}
+            />
+        </View>,
+        <View key="settingsView" id="settings" activePanel="settings">
+            <Settings
+                id="settings"
+                imitateLongAction={imitateLongAction}
+                editProfile={_ => setActiveModal('edit')}
+            />
+        </View>,
+        <View key="supportView" id="support" activePanel="support">
+            <Support id="support"/>
+        </View>]
 
     return (
         <SplitLayout
@@ -73,18 +89,10 @@ export const AppDefault = withAdaptivity((props) => {
                 {SecondaryComponent}
             </SplitCol>}
             <SplitCol spaced maxWidth="560px" animate={!isTablet}>
-                <MainComponent tabbar={SecondaryComponent} activeView={activeStory} activeStory={activeStory}>
-                    <View id="home" activePanel="home">
-                        <Home id="home" imitateLongAction={imitateLongAction}/>
-                    </View>
-                    <View id="settings" activePanel="settings">
-                        <Settings id="settings" imitateLongAction={imitateLongAction}
-                                  editProfile={_ => setActiveModal('edit')}/>
-                    </View>
-                    <View id="support" activePanel="support">
-                        <Support id="support"/>
-                    </View>
-                </MainComponent>
+                {isDesktop ?
+                    <Root activeView={activeStory} children={AppLayout}/>:
+                    <Epic tabbar={SecondaryComponent} activeStory={activeStory} children={AppLayout}/>
+                }
             </SplitCol>
             {isTablet && <FeaturedFeed setActiveModal={setActiveModal}/>}
         </SplitLayout>
