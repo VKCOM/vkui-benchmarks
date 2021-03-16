@@ -3,7 +3,6 @@ import {
     Block,
     BlockTitle,
     Button,
-    f7,
     Link,
     List,
     ListGroup,
@@ -14,7 +13,7 @@ import {
     Views
 } from "framework7-react";
 import {Home} from "./pages/Home";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Settings} from "./pages/Settings";
 import {Support} from "./pages/Support";
 import {UserContext} from "./index";
@@ -22,10 +21,6 @@ import {AppbarGlobal} from "./components/AppbarGlobal";
 
 export const AppDefault = () => {
     const [page, setPage] = useState("home");
-
-    useEffect(() => {
-        f7.sheet.open(".settings");
-    }, [])
 
     return (
         <App themeDark theme="auto" name="Framework7 Benchmark">

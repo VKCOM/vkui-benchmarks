@@ -17,7 +17,7 @@ configureRootTheme({theme});
 
 const AppDefault = () => {
     const [activePage, setActivePage] = useState('home');
-    const [showProfileModal, setShowProfileModal] = useState(true);
+    const [showProfileModal, setShowProfileModal] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
 
     const Modal = compose(

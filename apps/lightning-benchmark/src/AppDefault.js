@@ -7,7 +7,7 @@ import {TestModal} from "./components/TestModal";
 
 export const AppDefault = () => {
     const [activePage, setActivePage] = useState("home");
-    const [modalOpened, setModalOpened] = useState("home");
+    const [modalOpened, setModalOpened] = useState(false);
     return (
         <div className="App">
             <TestModal opened={modalOpened} setter={setModalOpened}/>
