@@ -26,7 +26,7 @@ export const Support = (props) => {
             before={<Avatar size={32}
                             src='https://sun9-30.userapi.com/s/v1/ig1/-lRG01_N_doQuV3Ip0AS4WqAXl0ZEdi9lharaPfTzvQanK1umeYFjuGcSGjYDM5CANdnhdo0.jpg?size=100x0&quality=96&crop=571,107,426,426&ava=1'/>}>
             <div style={{display: 'flex'}}>
-                <Text>Support team</Text>
+                <Text weight="semibold">Support team</Text>
             </div>
         </RichCell>
         ]
@@ -42,7 +42,7 @@ export const Support = (props) => {
                     <RichCell multiline text={messageText} disabled
                               before={<Avatar size={32} src={value.photo_100}/>}>
                         <div style={{display: 'flex'}}><Link>{value.first_name + ' ' + value.last_name}</Link><Text
-                            weight='regular' style={{
+                            weight='semibold' style={{
                             color: 'var(--text_secondary)',
                             marginLeft: 8
                         }}>{date.getHours() + ':' + leadingZero(date.getMinutes())}</Text></div>
