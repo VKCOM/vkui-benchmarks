@@ -5,10 +5,10 @@ import {
     Container,
     List,
     ListItem,
-    ListItemAvatar,
+    ListItemAvatar, ListItemIcon,
     ListItemSecondaryAction,
     ListItemText,
-    Paper,
+    Paper, Radio,
     Toolbar
 } from "@material-ui/core";
 import {useMemo, useState} from "react";
@@ -21,7 +21,10 @@ export const AppBurn = () => {
     useMemo(() => {
         let genList = listContent;
         for (let i = 0; i < 500; i++) {
-            genList.push(<ListItem key={'list' + i}>
+            genList.push(<ListItem button key={'list' + i}>
+                <ListItemIcon>
+                    <Radio/>
+                </ListItemIcon>
                 <ListItemAvatar>
                     <Avatar>
                         <MenuBook/>
