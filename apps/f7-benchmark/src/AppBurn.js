@@ -15,7 +15,7 @@ export const AppBurn = () => {
                     mediaItem
                     key={i}
                     title="Random Text"
-                    subtitle="Grap a cup of coffee"
+                    subtitle="Grab a cup of coffee"
                 >
                     <Icon slot="media" f7="book"/>
                 </ListItem>
