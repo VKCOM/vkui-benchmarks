@@ -3,7 +3,7 @@
     "collect": {
       "settings": {
         "preset": "desktop",
-        "maxWaitForFcp": 60000
+        "maxWaitForFcp": 60000,
         "throttling": {
             "cpuSlowdownMultiplier": 4
         }
