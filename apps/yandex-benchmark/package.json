@@ -2,6 +2,7 @@
   "name": "@vkui-benchmarks/yandex-benchmark",
   "version": "0.0.1",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@bem-react/classname": "^1.5.9",
     "@bem-react/core": "^3.0.4",

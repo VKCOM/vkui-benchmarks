@@ -42,14 +42,13 @@ export const AppBurn = (props) => {
     return (
         <SplitLayout
             style={{justifyContent: "center"}}
-            header={platform !== VKCOM && <PanelHeader separator={false}/>}
         >
             <SplitCol spaced maxWidth="720px" animate={viewWidth < ViewWidth.SMALL_TABLET}>
                 <View activePanel='panel'>
                     <Panel id='panel'>
-                        <PanelHeader right={<SideButtons/>}>
-                            1000 Cells
-                        </PanelHeader>
+                        <Group>
+                            <SideButtons/>
+                        </Group>
                         <Group>
                             {listContent}
                         </Group>

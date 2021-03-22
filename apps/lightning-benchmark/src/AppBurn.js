@@ -1,6 +1,6 @@
 import {Navbar} from "./components/Navbar";
 import {useState, useMemo} from "react";
-import {Radio} from "@salesforce/design-system-react";
+import {Radio, RadioGroup} from "@salesforce/design-system-react";
 
 export const AppBurn = () => {
     const [listContent, setListContent] = useState([]);
@@ -20,9 +20,9 @@ export const AppBurn = () => {
     return (
         <div className="App">
             <Navbar/>
-            <div className="BurnPage">
+            <RadioGroup className="BurnPage">
                 {listContent}
-            </div>
+            </RadioGroup>
         </div>
     )
 }

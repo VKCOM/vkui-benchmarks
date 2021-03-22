@@ -18,19 +18,17 @@ import {SideButtons} from "../components/SideButtons";
 
 export const Support = (props) => {
     const [messages, setMessages] = useState([
-            <>
-                <RichCell
-                    multiline
-                    text={'Support is currently unavailable'}
-                    disabled
-                    before={<Avatar size={32}
-                                    src='https://sun9-30.userapi.com/s/v1/ig1/-lRG01_N_doQuV3Ip0AS4WqAXl0ZEdi9lharaPfTzvQanK1umeYFjuGcSGjYDM5CANdnhdo0.jpg?size=100x0&quality=96&crop=571,107,426,426&ava=1'/>}>
-                    <div style={{display: 'flex'}}>
-                        <Text>Support team</Text>
-                    </div>
-                </RichCell>
-                <Separator wide/>
-            </>
+        <RichCell
+            key="serviceMsg"
+            multiline
+            text={'Support is currently unavailable'}
+            disabled
+            before={<Avatar size={32}
+                            src='https://sun9-30.userapi.com/s/v1/ig1/-lRG01_N_doQuV3Ip0AS4WqAXl0ZEdi9lharaPfTzvQanK1umeYFjuGcSGjYDM5CANdnhdo0.jpg?size=100x0&quality=96&crop=571,107,426,426&ava=1'/>}>
+            <div style={{display: 'flex'}}>
+                <Text weight="semibold">Support team</Text>
+            </div>
+        </RichCell>
         ]
     );
     const [messageText, setMessageText] = useState("");
@@ -39,11 +37,11 @@ export const Support = (props) => {
         let msgArr = messages;
         let date = new Date();
         msgArr.push(
-            <UserContext.Consumer key={msgArr.length}>
+            <UserContext.Consumer key={msgArr.length+"msg"}>
                 {value =>
                     <RichCell multiline text={messageText} disabled
                               before={<Avatar size={32} src={value.photo_100}/>}>
-                        <div style={{display: 'flex'}}><Link>{value.first_name + ' ' + value.last_name}</Link><Text
+                        <div style={{display: 'flex'}}><Link><Text weight="semibold">{value.first_name + ' ' + value.last_name}</Text></Link><Text
                             weight='regular' style={{
                             color: 'var(--text_secondary)',
                             marginLeft: 8

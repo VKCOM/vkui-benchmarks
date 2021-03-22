@@ -1,4 +1,4 @@
-import {App, List, ListItem, Page, Toggle, View} from "framework7-react";
+import {App, Icon, List, ListItem, Page, View} from "framework7-react";
 import {useMemo, useState} from "react";
 import {AppbarGlobal} from "./components/AppbarGlobal";
 
@@ -9,8 +9,15 @@ export const AppBurn = () => {
         let genList = listContent;
         for (let i = 0; i < 500; i++) {
             genList.push(
-                <ListItem key={i} title={"ListItem №" + i}>
-                    <Toggle slot="after"/>
+                <ListItem
+                    radio
+                    radioIcon="end"
+                    mediaItem
+                    key={i}
+                    title="Random Text"
+                    subtitle="Grab a cup of coffee"
+                >
+                    <Icon slot="media" f7="book"/>
                 </ListItem>
             )
         }
