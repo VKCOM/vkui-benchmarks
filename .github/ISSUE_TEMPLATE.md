@@ -1,6 +1,6 @@
 ---
 title: Benchmark report {{ env.NUMBER }} ({{ env.ID }})
-labels: report
+labels: 'report, throttled'
 ---
 
 [{{ env.RUN_LINK }}]({{ env.RUN_LINK }})
