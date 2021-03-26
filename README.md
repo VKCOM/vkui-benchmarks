@@ -12,6 +12,7 @@
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2"
 
+> На момент тестирования брались свежие версии библиотек
 
 ## Average Render Time (от 19 марта 2021г.)
 |      | Default  | Burn      | Modals  |
