@@ -185,9 +185,8 @@ Related:
 
 - Напрягает показатель Perfomance в списке с Cell из-за высокой нагруженности **Tappable**. В примере используется 500 одинаковых по сложности Cell: selectable, в before Avatar, в after IconButton, не disabled. 
 
-![](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616154975169_image.png)
-
 > Важно отметить - CPU throttling при бенчмарке выкручен на 4x slowdown.  ~ На уровне бюджетно-среднего Android устройства.
+![](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616154975169_image.png)
 
 > 4,2s до возможности использовать приложение. В реальных условиях 500 Cell не нужны, но для каких-нибудь приложений с бесконечными списками это может иметь явное значение (Юла, Работа ВК и пр.)
 
@@ -196,6 +195,9 @@ Related issues:
 
 
 - Можно добавить в наш [template](https://www.npmjs.com/package/@vkontakte/create-vk-mini-app) упаковку с помощью `compress-create-react-app`, большиство хостингов статики должны поддерживать передачу gzip, в Ubuntu 20.04 (nginx.conf) она включена по-умолчанию. Это довольно сильно влияет на показатель Perfomance в LH.
-![Output после выполнения compress-cra](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616394212881_image.png)
-![Github Pages поддерживает gzip](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616394601426_image.png)
 
+> Output после выполнения compress-cra
+![](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616394212881_image.png)
+
+> Github Pages поддерживает gzip
+![](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616394601426_image.png)
