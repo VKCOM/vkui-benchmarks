@@ -1,6 +1,6 @@
 # VKUI - анализ производительности
 
-## Сравнение с другими библиотеками (от 19 марта 2021г.)
+## Сравнение с другими библиотеками (от 29 марта 2021г.)
 
 ### TLDR:
 
@@ -13,14 +13,14 @@
 
 ### Детальный отчет:
 
-> **Замеры проводятся в LH с конфигурацией по-умолчанию, mobile пресет:**
+> **Замеры проводятся в LH с конфигурацией по-умолчанию, desktop пресет:**
 > **CPU throttling:** 1x slowdown (Simulated)
 > **Network throttling:** 40 ms TCP RTT, 10,240 Kbps throughput (Simulated)
 > ~ сопоставимо с уровнем флагманского Android устройства
 > 
 > В сторонних приложениях был упор на использование максимально схожих компонентов как у VKUI.
 > 
-> [Последний отчёт](https://github.com/ewgenius/vkui-benchmarks/issues/96)
+> [Последний отчёт](https://github.com/VKCOM/vkui-benchmarks/issues/101)
 
 **Библиотеки использованные для сравнения:**
 
@@ -39,12 +39,13 @@
 
 | **app**      | **type (app link)**                                    | **report**                                                                                                             | **performance** |
 | ------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
-| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717411-10367.report.html) | 0.98 🟢         |
-| ant          | [default](https://ant-benchmark.surge.sh/)             | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147709500-62133.report.html) | 0.78            |
-| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717735-5946.report.html)  | 1               |
-| ant          | [modals](https://ant-benchmark.surge.sh/?mode=modals)  | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147709925-78984.report.html) | 1               |
-| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718303-47057.report.html) | 0.93 🔴         |
-| ant          | [list](https://ant-benchmark.surge.sh/?mode=burn)      | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147710403-62886.report.html) | 0.94            |
+| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030062631-6775.report.html)  | 1 🟢            |
+| ant          | [default](https://ant-benchmark.surge.sh/)             | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030060897-55069.report.html) | 0.97            |
+| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063311-97959.report.html) | 1 🟢            |
+| ant          | [modals](https://ant-benchmark.surge.sh/?mode=modals)  | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030061136-36375.report.html) | 0.99            |
+| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063803-44460.report.html) | 0.93 🟢         |
+| ant          | [list](https://ant-benchmark.surge.sh/?mode=burn)      | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030061603-18386.report.html) | 0.91            |
+
 
 > **list:**
 > ant не имеет схожего по сложности компонента для отрисовки сложных списков
@@ -53,12 +54,12 @@
 
 | **app**      | **type (app link)**                                    | **report**                                                                                                             | **performance** |
 | ------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
-| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717411-10367.report.html) | 0.98 🟢         |
-| f7           | [default](https://f7-benchmark.surge.sh/)              | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147697802-75203.report.html) | 0.54            |
-| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717735-5946.report.html)  | 1 🟢            |
-| f7           | [modals](https://f7-benchmark.surge.sh/?mode=modals)   | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147698183-12524.report.html) | 0.99            |
-| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718303-47057.report.html) | 0.93 🟢         |
-| f7           | [list](https://f7-benchmark.surge.sh/?mode=burn)       | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147698495-66581.report.html) | 0.85            |
+| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030062631-6775.report.html)  | 1 🟢            |
+| f7           | [default](https://f7-benchmark.surge.sh/)              | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030036708-13961.report.html) | 0.93            |
+| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063311-97959.report.html) | 1 🟢            |
+| f7           | [modals](https://f7-benchmark.surge.sh/?mode=modals)   | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030037068-17820.report.html) | 0.99            |
+| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063803-44460.report.html) | 0.93 🟢         |
+| f7           | [list](https://f7-benchmark.surge.sh/?mode=burn)       | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030037352-21809.report.html) | 0.92            |
 
 > **list:**
 > Framework7 не позволяет вложить одновременно checkbox и radio в компонент списка (List)
@@ -67,12 +68,12 @@
 
 | **app**      | **type (app link)**                                      | **report**                                                                                                             | **performance** |
 | ------------ | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
-| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)              | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717411-10367.report.html) | 0.98 🟢         |
-| fluent       | [default](https://fluent-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147697499-39267.report.html) | 0.92            |
-| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals)   | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717735-5946.report.html)  | 1               |
-| fluent       | [modals](https://fluent-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147697835-2869.report.html)  | 1               |
-| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)       | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718303-47057.report.html) | 0.93 🔴         |
-| fluent       | [list](https://fluent-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147698306-24463.report.html) | 0.99            |
+| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)              | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030062631-6775.report.html)  | 1 🟢            |
+| fluent       | [default](https://fluent-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030032798-28386.report.html) | 0.9             |
+| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals)   | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063311-97959.report.html) | 1 🟢            |
+| fluent       | [modals](https://fluent-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030033148-38741.report.html) | 0.97            |
+| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)       | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063803-44460.report.html) | 0.93 🔴         |
+| fluent       | [list](https://fluent-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030033599-6033.report.html)  | 0.94            |
 
 > list:
 > Fluent не имеет схожего по сложности компонента для отрисовки сложных списков
@@ -81,12 +82,12 @@
 
 | **app**      | **type (app link)**                                         | **report**                                                                                                             | **performance** |
 | ------------ | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
-| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)                 | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717411-10367.report.html) | 0.98 🟢         |
-| lightning    | [default](https://lightning-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147684712-79609.report.html) | 0.58            |
-| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals)      | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717735-5946.report.html)  | 1               |
-| lightning    | [modals](https://lightning-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147685100-3410.report.html)  | 1               |
-| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)          | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718303-47057.report.html) | 0.93 🔴         |
-| lightning    | [list](https://lightning-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147685405-50498.report.html) | 1               |
+| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)                 | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030062631-6775.report.html)  | 1 🟢            |
+| lightning    | [default](https://lightning-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030038399-83875.report.html) | 0.97            |
+| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals)      | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063311-97959.report.html) | 1               |
+| lightning    | [modals](https://lightning-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030038660-58996.report.html) | 1               |
+| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)          | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063803-44460.report.html) | 0.93 🔴         |
+| lightning    | [list](https://lightning-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030039096-12159.report.html) | 1               |
 
 > **list:**
 > Lightning не имеет схожего по сложности компонента для отрисовки сложных списков
@@ -95,12 +96,12 @@
 
 | **app**      | **type (app link)**                                    | **report**                                                                                                             | **performance** |
 | ------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
-| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717411-10367.report.html) | 0.98 🔴         |
-| mui          | [default](https://mui-benchmark.surge.sh/)             | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717595-76719.report.html) | 0.99            |
-| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717735-5946.report.html)  | 1 🟢            |
-| mui          | [modals](https://mui-benchmark.surge.sh/?mode=modals)  | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718185-95752.report.html) | 0.99            |
-| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718303-47057.report.html) | 0.93 🟢         |
-| mui          | [list](https://mui-benchmark.surge.sh/?mode=burn)      | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718906-15686.report.html) | 0.79            |
+| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030062631-6775.report.html)  | 1 🟢            |
+| mui          | [default](https://mui-benchmark.surge.sh/)             | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030065531-12154.report.html) | 0.94            |
+| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063311-97959.report.html) | 1 🟢            |
+| mui          | [modals](https://mui-benchmark.surge.sh/?mode=modals)  | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030066267-39489.report.html) | 0.96            |
+| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063803-44460.report.html) | 0.93 🟢         |
+| mui          | [list](https://mui-benchmark.surge.sh/?mode=burn)      | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030066818-57212.report.html) | 0.71            |
 
 > **default и modals:**
 > Разница на уровне погрешности (Δ0,1ms в First Contentful Paint)
@@ -117,12 +118,12 @@
 
 | **app**      | **type (app link)**                                        | **report**                                                                                                             | **performance** |
 | ------------ | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
-| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)                | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717411-10367.report.html) | 0.98            |
-| spectrum     | [default](https://spectrum-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147692194-94905.report.html) | 0.98            |
-| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717735-5946.report.html)  | 1               |
-| spectrum     | [modals](https://spectrum-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147692696-22794.report.html) | 1               |
-| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)         | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718303-47057.report.html) | 0.93 🔴         |
-| spectrum     | [list](https://spectrum-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147693398-4686.report.html)  | 1               |
+| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)                | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030062631-6775.report.html)  | 1 🟢            |
+| spectrum     | [default](https://spectrum-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030040112-9368.report.html)  | 0.98            |
+| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063311-97959.report.html) | 1               |
+| spectrum     | [modals](https://spectrum-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030040817-75048.report.html) | 1               |
+| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)         | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063803-44460.report.html) | 0.93 🔴         |
+| spectrum     | [list](https://spectrum-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030041495-41255.report.html) | 0.99            |
 
 > **list:**
 > Spectrum не имеет схожего по сложности компонента для отрисовки сложных списков
@@ -131,17 +132,19 @@
 
 | **app**      | **type (app link)**                                      | **report**                                                                                                             | **performance** |
 | ------------ | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
-| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)              | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717411-10367.report.html) | 0.98 🟢         |
-| yandex       | [default](https://yandex-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147749995-36517.report.html) | 0.63            |
-| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals)   | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147717735-5946.report.html)  | 1               |
-| yandex       | [modals](https://yandex-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147750399-96453.report.html) | 1               |
-| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)       | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147718303-47057.report.html) | 0.93 🔴         |
-| yandex       | [list](https://yandex-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1616147750796-39949.report.html) | 1               |
+| vkui (4.3.0) | [default](https://vkui-benchmark.surge.sh/)              | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030062631-6775.report.html)  | 1               |
+| yandex       | [default](https://yandex-benchmark.surge.sh/)            | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030031595-98696.report.html) | 1               |
+| vkui (4.3.0) | [modals](https://vkui-benchmark.surge.sh/?mode=modals)   | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063311-97959.report.html) | 1               |
+| yandex       | [modals](https://yandex-benchmark.surge.sh/?mode=modals) | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030031857-90566.report.html) | 1               |
+| vkui (4.3.0) | [list](https://vkui-benchmark.surge.sh/?mode=burn)       | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030063803-44460.report.html) | 0.93 🔴         |
+| yandex       | [list](https://yandex-benchmark.surge.sh/?mode=burn)     | [report](https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1617030032210-65794.report.html) | 1               |
+
 
 > В первую очередь кажется, что yandex-ui не предназначен для сторонних разработчиков и этому способствует плохая документация.
 > 
 > **list:**
 > Yandex-UI не имеет схожего по сложности компонента для отрисовки сложных списков
+
 
 
 ## **Подводные камни**
@@ -204,7 +207,7 @@ Related issues:
 
 > На момент тестирования брались свежие версии библиотек
 
-## Average Render Time (от 19 марта 2021г.)
+## Average Render Time
 |      | Default  | Burn      | Modals  |
 | ---- | -------- | --------- | ------- |
 | VKUI | ~37,82ms | ~457,88ms | ~20,7ms |
