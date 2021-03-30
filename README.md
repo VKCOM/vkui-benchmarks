@@ -9,11 +9,11 @@
   - burn (list) - экран с большим списком однотипных интерактивных элементов (500)
   - modals - экран с несколькими открытыми модалками
 - VKUI по показателям +/- на одном уровне с другими библиотеками, сильных просадок, как и сильного превосходства нет
-- Одно из явных проблематичных мест - вложенные Tappable протестированы на большом списке, единственная библиотка в которой есть аналогичный кейс это Material-UI, и VKUI сильно обходит ее по производительности ([детали](#vkui-430-vs-mui))
+- Одно из явных проблематичных мест — вложенные Tappable протестированы на большом списке, единственная библиотека в которой есть аналогичный кейс это Material-UI, и VKUI сильно обходит ее по производительности ([детали](#vkui-430-vs-mui))
 
 ### Детальный отчет:
 
-> **Замеры проводятся в LH с конфигурацией по-умолчанию, desktop пресет:**
+> **Замеры проводятся в LH с конфигурацией по-умолчанию, desktop preset:**
 > **CPU throttling:** 1x slowdown (Simulated)
 > **Network throttling:** 40 ms TCP RTT, 10,240 Kbps throughput (Simulated)
 > ~ сопоставимо с уровнем флагманского Android устройства
@@ -179,7 +179,7 @@ Related:
 [#1335](https://github.com/VKCOM/VKUI/pull/1335)
 
 
-- Напрягает показатель Perfomance в списке с Cell из-за высокой нагруженности **Tappable**. В примере используется 500 одинаковых по сложности Cell: selectable, в before Avatar, в after IconButton, не disabled. 
+- Напрягает показатель Performance в списке с Cell из-за высокой нагруженности **Tappable**. В примере используется 500 одинаковых по сложности Cell: selectable, в before Avatar, в after IconButton, не disabled. 
 
 > Важно отметить - CPU throttling при бенчмарке выкручен на 4x slowdown.  ~ На уровне бюджетно-среднего Android устройства.
 ![](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616154975169_image.png)
@@ -189,7 +189,7 @@ Related:
 Related issues:
 [#816](https://github.com/VKCOM/VKUI/issues/816), [#1442](https://github.com/VKCOM/VKUI/issues/1442), [#1443](https://github.com/VKCOM/VKUI/issues/1443)
 
-- Можно добавить в наш [template](https://www.npmjs.com/package/@vkontakte/create-vk-mini-app) упаковку с помощью `compress-create-react-app`, большиство хостингов статики должны поддерживать передачу gzip, в Ubuntu 20.04 (nginx.conf) она включена по-умолчанию. Это довольно сильно влияет на показатель Perfomance в LH.
+- Можно добавить в наш [template](https://www.npmjs.com/package/@vkontakte/create-vk-mini-app) упаковку с помощью `compress-create-react-app`, большиство хостингов статики должны поддерживать передачу gzip, в Ubuntu 20.04 (nginx.conf) она включена по-умолчанию. Это довольно сильно влияет на показатель Performance в LH.
 
 > Output после выполнения compress-cra
 ![](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616394212881_image.png)
