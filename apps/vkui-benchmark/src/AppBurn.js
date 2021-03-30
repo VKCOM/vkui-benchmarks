@@ -1,24 +1,19 @@
 import {
     Avatar,
-    Cell,
+    Cell, Checkbox,
     Group,
-    IconButton,
     Panel,
-    PanelHeader,
     SplitCol,
     SplitLayout,
-    usePlatform,
     View,
     ViewWidth,
-    VKCOM
 } from "@vkontakte/vkui";
 import {useMemo, useState} from "react";
-import {Icon20BookOutline, Icon24CheckBoxOff} from "@vkontakte/icons";
+import {Icon20BookOutline} from "@vkontakte/icons";
 import {SideButtons} from "./components/SideButtons";
 
 export const AppBurn = (props) => {
     const [listContent, setListContent] = useState([]);
-    const platform = usePlatform();
     const {viewWidth} = props;
 
     useMemo(() => {
@@ -30,7 +25,7 @@ export const AppBurn = (props) => {
                     before={<Avatar size={36}><Icon20BookOutline/></Avatar>}
                     description="Grab a cup of coffee"
                     selectable
-                    after={<IconButton><Icon24CheckBoxOff/></IconButton>}
+                    after={<Checkbox>Checkbox</Checkbox>}
                 >
                     Random text
                 </Cell>
