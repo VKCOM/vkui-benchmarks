@@ -13,9 +13,18 @@ import {
     View
 } from "framework7-react";
 import {AppbarGlobal} from "./components/AppbarGlobal";
+import {useEffect} from "react";
+import {f7ready} from "framework7-react"
 
 export const AppModals = () => {
     const value = "...";
+
+    useEffect(()=>{
+        f7ready((f7) => {
+            f7.sheet.open(".sheet-user");
+        })
+    }, []);
+
     return (
         <App themeDark theme="auto" name="Framework7 Benchmark">
             <AppbarGlobal>

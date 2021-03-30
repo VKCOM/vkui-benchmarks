@@ -44,7 +44,7 @@ export const AppBurn = () => {
             <CssBaseline/>
             <header>
                 <Header drawerHidden={true}>
-                    1000 ListItems
+                    Burn
                 </Header>
                 <Toolbar/>
             </header>

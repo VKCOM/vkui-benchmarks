@@ -4,7 +4,7 @@ import {Navbar} from "./components/Navbar";
 import {Button} from "@salesforce/design-system-react";
 
 export const AppModals = () => {
-    const [openedModal, setOpenedModal] = useState(0);
+    const [openedModal, setOpenedModal] = useState(1);
     return (
         <div>
             <Navbar/>

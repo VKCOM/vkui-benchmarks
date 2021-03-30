@@ -4,7 +4,7 @@ import {useState} from "react";
 import {GlobalHeader} from "./components/GlobalHeader";
 
 export const AppModals = () => {
-    const [selectedModal, setSelectedModal] = useState(0);
+    const [selectedModal, setSelectedModal] = useState(1);
 
     return (
         <Content>

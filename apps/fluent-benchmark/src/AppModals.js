@@ -3,7 +3,7 @@ import {DefaultButton, Modal, Stack} from "@fluentui/react";
 import {useState} from "react";
 
 export const AppModals = () => {
-    const [selectedModal, setSelectedModal] = useState(0);
+    const [selectedModal, setSelectedModal] = useState(1);
 
     return (
         <Stack>
