@@ -17,9 +17,9 @@
 > **CPU throttling:** 1x slowdown (Simulated)
 > **Network throttling:** 40 ms TCP RTT, 10,240 Kbps throughput (Simulated)
 > ~ сопоставимо с уровнем флагманского Android устройства
-> 
+>
 > В сторонних приложениях был упор на использование максимально схожих компонентов как у VKUI.
-> 
+>
 > [Последний отчёт](https://github.com/VKCOM/vkui-benchmarks/issues/111)
 
 **Библиотеки использованные для сравнения:**
@@ -107,13 +107,15 @@
 
 > default и modals:
 > Разница незначительная, из-за более длительного First Contentful Paint.
-> 
+>
 > list:
 > При примерно одинаковой загруженности списков в material-ui и VKUI, Average Render Time выигрывает в нашу пользу почти в **три раза**.
-> 
+>
 > (~1328,6ms в material-ui vs ~476,4ms в VKUI)
-![List в material-ui](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616084901718_image.png)
-![Cell в VKUI](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616084936142_image.png)
+>
+> ![List в material-ui](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616084901718_image.png)
+> <img width="739" alt="image" src="https://user-images.githubusercontent.com/36237725/112989118-3dd89900-916d-11eb-86bf-77d0d00f448c.png">
+
 
 
 #### `vkui (4.3.0)` vs `spectrum`:
@@ -145,7 +147,7 @@
 > В первую очередь кажется, что yandex-ui не предназначен для сторонних разработчиков и этому способствует плохая документация.
 > default:
 > Разница на уровне погрешности
-> 
+>
 > list:
 > Yandex-UI не имеет схожего по сложности компонента для отрисовки сложных списков
 
@@ -179,7 +181,7 @@ Related:
 [#1335](https://github.com/VKCOM/VKUI/pull/1335)
 
 
-- Напрягает показатель Performance в списке с Cell из-за высокой нагруженности **Tappable**. В примере используется 500 одинаковых по сложности Cell: selectable, в before Avatar, в after IconButton, не disabled. 
+- Напрягает показатель Performance в списке с Cell из-за высокой нагруженности **Tappable**. В примере используется 500 одинаковых по сложности Cell: selectable, в before Avatar, в after IconButton, не disabled.
 
 > Важно отметить - CPU throttling при бенчмарке выкручен на 4x slowdown.  ~ На уровне бюджетно-среднего Android устройства.
 ![](https://paper-attachments.dropbox.com/s_225144D9FF9B7C6951E6039B4197E180AAAE9434A133852CB400146718BE285A_1616154975169_image.png)
